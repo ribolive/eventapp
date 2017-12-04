@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import eventapp.util.SceneManager;
 import eventapp.util.Conn;
+import eventapp.DAO.UsuarioDAO;
+import eventapp.models.Usuario;
 
 /**
  *
@@ -23,9 +25,26 @@ public class EventApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
-        //Conn con = new Conn();
-        //con.conectar();
+        //launch(args);
+        Conn con = new Conn();
+        con.conectar();
+        
+        UsuarioDAO dao = new UsuarioDAO();
+        
+
+        try{
+            Usuario usu = new Usuario(1,"João","jobel","jobel@bol.com.br","123","123");
+            dao.insert(usu);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        
+        System.out.println("djaoisdjoijasoidjoisjad");
+        
+        
+        
+        
+        
     }
     
 }

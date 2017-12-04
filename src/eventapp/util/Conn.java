@@ -28,7 +28,7 @@ public class Conn {
             String mydatabase = "eventapp";
             String url = "jdbc:mysql://localhost/"+mydatabase+"?autoReconnect=true&useSSL=true";
             String username = "root";
-            String password = "admin";
+            String password = "123";
             connection = DriverManager.getConnection(url, username, password);
 
             //Testa sua conexão// 

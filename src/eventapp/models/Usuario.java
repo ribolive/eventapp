@@ -1,7 +1,7 @@
-package models;
+package eventapp.models;
 
 import java.util.ArrayList;
-
+    
 public class Usuario {
     
     private long id;
@@ -10,21 +10,16 @@ public class Usuario {
     private String email;
     private String senha;
     
-    public Usuario(int id,String nome, String usuario, String email, String senha, String confirmaSenha){ 
-        try {
-            if (!senha.equals(confirmaSenha)){
-                throw new Exception("A senha e a senha de confirmação devem ser iguais");
-            }
-            this.nome = nome;
-            this.usuario = usuario;
-            this.email = email;
-            this.senha = senha;
-            
-        } catch (Exception e) {
-            e.getMessage();
+    public Usuario(int id,String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
+        if (!senha.equals(confirmaSenha)){
+            throw new Exception("A senha e a senha de confirmação devem ser iguais");
         }
-        
+        this.nome = nome;
+        this.usuario = usuario;
+        this.email = email;
+        this.senha = senha;    
     }
+        
 
     public String getNome() {
         return nome;
