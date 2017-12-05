@@ -7,7 +7,9 @@ import javafx.stage.Stage;
 import eventapp.util.SceneManager;
 import eventapp.util.Conn;
 import eventapp.DAO.UsuarioDAO;
+import eventapp.DAO.EventoDAO;
 import eventapp.models.Usuario;
+import eventapp.models.Evento;
 
 /**
  *
@@ -30,16 +32,29 @@ public class EventApp extends Application {
         con.conectar();
         
         UsuarioDAO dao = new UsuarioDAO();
+        EventoDAO daoEvento = new EventoDAO();
         
 
         try{
-            Usuario usu = new Usuario(1,"João","jobel","jobel@bol.com.br","123","123");
-            dao.insert(usu);
+            Usuario usu = new Usuario("João","jobel","jobel@bol.com.br","123","123");
+            dao.insere(usu);
         } catch (Exception e){
             System.out.println(e);
         }
         
-        System.out.println("djaoisdjoijasoidjoisjad");
+        
+        try{
+            //String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local
+            Evento env = new Evento("Semana de Tecnologia da Informação", "Evento de tecnologia","22/10/2017","28/10/2018",2,"UFLA");
+            System.out.println("kkk");
+            daoEvento.insere(env);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        
+        
+        
+        
         
         
         

@@ -10,7 +10,7 @@ import eventapp.util.Conn;
   
 public class UsuarioDAO {  
    
-    public Usuario insert(Usuario usuario){
+    public Usuario insere(Usuario usuario){
         String sql = "INSERT into usuario (nome, usuario, email, senha) VALUES(?,?,?,?)";
         PreparedStatement ps;
         try{
@@ -21,6 +21,7 @@ public class UsuarioDAO {
             ps.setString(4,usuario.getSenha());
             ps.executeUpdate();
             Conn.fecharConexao();
+            System.out.println("Cadastrado com sucesso!");
             return null;
         } catch (Exception ex) {
             System.err.println(ex);

@@ -10,7 +10,7 @@ public class Usuario {
     private String email;
     private String senha;
     
-    public Usuario(int id,String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
+    public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
         if (!senha.equals(confirmaSenha)){
             throw new Exception("A senha e a senha de confirmação devem ser iguais");
         }
