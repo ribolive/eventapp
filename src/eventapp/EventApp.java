@@ -72,8 +72,15 @@ public class EventApp extends Application {
         daoEvento.atualizar(env);*/
         
         /* ### Buscar por id ### */
-        Evento env = daoEvento.procurarPorId(1);
-        env.imprimeEvento();
+        /*Evento env = daoEvento.procurarPorId(1);
+        env.imprimeEvento();*/
+        
+        /* ### Buscar por nome ### */
+        ArrayList<Evento> eventos = new ArrayList();
+        eventos = daoEvento.buscarPorNome("semana");
+        for (Evento e : eventos) {
+            e.imprimeEvento();
+        }
         
         
         
