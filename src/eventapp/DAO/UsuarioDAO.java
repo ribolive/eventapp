@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import eventapp.models.Usuario;
 import eventapp.util.Conn;
+import eventapp.util.Seguranca;
 
 
   
@@ -28,4 +29,25 @@ public class UsuarioDAO {
             return null;
         }
     }
-}  
+    
+    public Usuario select(String login, String senha){
+        try{
+            String sql = "SELECT * from usuario where login = ? and senha = ?";
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ps.setString(1, login);
+            senha = Seguranca.getInstance().hash("MD5", senha);
+            ps.setString(2,senha);
+            ResultSet rs = ps.executeQuery();
+            Conn.fecharConexao();
+            Usuario usuario;
+            while(rs.next()){
+                usuario = new Usuario(rs.getString("nome"), rs.getString("usuario"), rs.getString("email"), rs.getString("senha"));
+                return usuario;
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+}
