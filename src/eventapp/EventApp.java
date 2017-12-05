@@ -71,6 +71,11 @@ public class EventApp extends Application {
         env.setId(1);
         daoEvento.atualizar(env);*/
         
+        /* ### Buscar por id ### */
+        Evento env = daoEvento.procurarPorId(1);
+        env.imprimeEvento();
+        
+        
         
         
         

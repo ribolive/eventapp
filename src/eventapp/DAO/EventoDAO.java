@@ -90,4 +90,20 @@ public class EventoDAO {
         }
     }
     
+    public Evento procurarPorId(int id) {
+        try {
+            String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where id = ? order by nome desc";
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Conn.fecharConexao();
+            rs.next();
+            Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+            return e;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+        }
+    }
+    
 }
