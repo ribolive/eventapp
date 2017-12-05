@@ -12,10 +12,6 @@ import eventapp.models.Usuario;
 import eventapp.models.Evento;
 import java.util.ArrayList;
 
-/**
- *
- * @author Gabriel_Note
- */
 public class EventApp extends Application {
     
     @Override
@@ -71,9 +67,9 @@ public class EventApp extends Application {
         //daoEvento.deletar(2);
         
         /* ### Editar eventos ### */
-        Evento env = new Evento("Semana de Tecnologia da Informação 2", "Evento de Empreendedorismo","23/10/2017","28/11/2018",2,"UFLA");
+        /*Evento env = new Evento("Semana de Tecnologia da Informação 2", "Evento de Empreendedorismo","23/10/2017","28/11/2018",2,"UFLA");
         env.setId(1);
-        daoEvento.atualizar(env);
+        daoEvento.atualizar(env);*/
         
         
         
