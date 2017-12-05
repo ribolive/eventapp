@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import eventapp.util.SceneManager;
 import eventapp.util.Conn;
+import eventapp.util.Seguranca;
 import eventapp.DAO.UsuarioDAO;
 import eventapp.DAO.EventoDAO;
 import eventapp.models.Usuario;
@@ -36,11 +37,22 @@ public class EventApp extends Application {
         /* ### Novo usuário ### */ 
         
         /*try{
-            Usuario usu = new Usuario("João","jobel","jobel@bol.com.br","123","123");
+            Usuario usu = new Usuario("João","jobel4","jobel4@bol.com.br","12345","12345");
             dao.insere(usu);
         } catch (Exception e){
             System.out.println(e);
+        }*/
+        
+        Seguranca seg = Seguranca.getInstance();
+        
+        if(seg.logar("jobel4","12345")){
+            System.out.println("Sucesso!");
+        } else {
+            System.out.println("Fracasso");
         }
+        
+        
+        
         
         /* ### Novo Evento ### */ 
         
@@ -76,11 +88,11 @@ public class EventApp extends Application {
         env.imprimeEvento();*/
         
         /* ### Buscar por nome ### */
-        ArrayList<Evento> eventos = new ArrayList();
+        /*ArrayList<Evento> eventos = new ArrayList();
         eventos = daoEvento.buscarPorNome("semana");
         for (Evento e : eventos) {
             e.imprimeEvento();
-        }
+        }*/
         
         
         

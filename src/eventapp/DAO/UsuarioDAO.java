@@ -19,7 +19,8 @@ public class UsuarioDAO {
             ps.setString(1,usuario.getNome());
             ps.setString(2,usuario.getUsuario());
             ps.setString(3,usuario.getEmail());
-            ps.setString(4,usuario.getSenha());
+            String senhaCodificada = Seguranca.getInstance().hash("MD5", usuario.getSenha());
+            ps.setString(4,senhaCodificada);
             ps.executeUpdate();
             Conn.fecharConexao();
             System.out.println("Cadastrado com sucesso!");
@@ -32,10 +33,11 @@ public class UsuarioDAO {
     
     public Usuario select(String login, String senha){
         try{
-            String sql = "SELECT * from usuario where login = ? and senha = ?";
+            String sql = "SELECT * from usuario where usuario = ? and senha = ?";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setString(1, login);
             senha = Seguranca.getInstance().hash("MD5", senha);
+            System.out.println(senha);
             ps.setString(2,senha);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
