@@ -37,6 +37,8 @@ public class EventApp extends Application {
         
         /* ### Métodos para testar o programa ### */ 
         
+        /* ### Novo usuário ### */ 
+        
         /*try{
             Usuario usu = new Usuario("João","jobel","jobel@bol.com.br","123","123");
             dao.insere(usu);
@@ -44,7 +46,9 @@ public class EventApp extends Application {
             System.out.println(e);
         }
         
+        /* ### Novo Evento ### */ 
         
+        /*
         try{
             //String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local
             Evento env = new Evento("Semana de Tecnologia da Informação", "Evento de tecnologia","22/10/2017","28/10/2018",2,"UFLA");
@@ -54,11 +58,20 @@ public class EventApp extends Application {
             System.out.println(e);
         }*/
         
-        ArrayList<Evento> eventos = new ArrayList();
+        
+        /* ### Listar eventos ### */
+        
+        /*ArrayList<Evento> eventos = new ArrayList();
         eventos = daoEvento.listar();
         for (Evento e : eventos) {
             e.imprimeEvento();
-        }
+        }*/
+        
+        /* ### Deletar eventos ### */
+        daoEvento.deletar(2);
+        
+        
+        
         
         
         

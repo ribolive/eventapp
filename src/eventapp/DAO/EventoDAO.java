@@ -51,4 +51,20 @@ public class EventoDAO {
         }
     }
     
+    public boolean deletar(int id) {
+        try {
+            String sql = "DELETE FROM evento WHERE id = " + id;
+            PreparedStatement stmt = Conn.conectar().prepareStatement(sql);
+            if (stmt.executeUpdate() != 0) {
+                Conn.fecharConexao();
+                System.out.println("Evento excluído com sucesso");
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
 }
