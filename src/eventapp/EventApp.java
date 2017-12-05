@@ -68,8 +68,12 @@ public class EventApp extends Application {
         }*/
         
         /* ### Deletar eventos ### */
-        daoEvento.deletar(2);
+        //daoEvento.deletar(2);
         
+        /* ### Editar eventos ### */
+        Evento env = new Evento("Semana de Tecnologia da Informação 2", "Evento de Empreendedorismo","23/10/2017","28/11/2018",2,"UFLA");
+        env.setId(1);
+        daoEvento.atualizar(env);
         
         
         

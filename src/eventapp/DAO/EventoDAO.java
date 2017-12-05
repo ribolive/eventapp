@@ -67,4 +67,27 @@ public class EventoDAO {
         }
     }
     
+    public boolean atualizar(Evento evento) {
+        try {
+            String sql = "UPDATE evento SET nome = ?, descricao = ?, data_inicio = ?, data_fim = ?,id_criador = ?, local_evento = ? WHERE id = ?";
+
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ps.setString(1, evento.getNome());
+            ps.setString(2, evento.getDescricao());
+            ps.setString(3, evento.getDataInicio());
+            ps.setString(4, evento.getDataFim());
+            ps.setInt(5, evento.getIdUsuario());
+            ps.setString(6, evento.getLocal());
+            ps.setInt(7, evento.getId());
+
+            ps.executeUpdate();
+            Conn.fecharConexao();
+            System.out.println("Atualização ocorrida com sucesso");
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+    
 }
