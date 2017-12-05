@@ -1,6 +1,7 @@
-package models;
+package eventapp.models;
 
 public class Evento {
+
     
     private int id;
     private String nome;
@@ -66,6 +67,18 @@ public class Evento {
 
     public int getIdUsuario() {
         return idUsuario;
+    }
+    
+    
+    /* Método de teste. Não recomendável na versão final do programa */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    /* Método de teste */
+    public void imprimeEvento(){
+        System.out.println("Nome: "+this.nome);
+        System.out.println("Descricao: "+this.descricao);
     }
     
     

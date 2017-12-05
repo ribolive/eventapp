@@ -1,7 +1,7 @@
 package eventapp.controllers;
 
 import java.util.ArrayList;
-import models.Usuario;
+import eventapp.models.Usuario;
 
 public class Controle {
     
