@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import eventapp.models.Evento;
 import eventapp.util.Conn;
+import java.util.ArrayList;
 
 
 
@@ -28,6 +29,24 @@ public class EventoDAO {
             return null;
         } catch (Exception ex) {
             System.err.println(ex);
+            return null;
+        }
+    }
+    
+    public ArrayList<Evento> listar() {
+        try {
+            String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento order by nome desc";
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Conn.fecharConexao();
+            ArrayList<Evento> eventos = new ArrayList();
+            while (rs.next()) {
+                Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+                eventos.add(e);
+            }
+            return eventos;
+        } catch (SQLException e) {
+            System.err.println(e);
             return null;
         }
     }

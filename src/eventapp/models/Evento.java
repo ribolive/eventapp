@@ -68,6 +68,12 @@ public class Evento {
         return idUsuario;
     }
     
+    /* Método de teste */
+    public void imprimeEvento(){
+        System.out.println("Nome: "+this.nome);
+        System.out.println("Descricao: "+this.descricao);
+    }
+    
     
   
     

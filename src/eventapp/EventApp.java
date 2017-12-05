@@ -10,6 +10,7 @@ import eventapp.DAO.UsuarioDAO;
 import eventapp.DAO.EventoDAO;
 import eventapp.models.Usuario;
 import eventapp.models.Evento;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,8 +35,9 @@ public class EventApp extends Application {
         UsuarioDAO dao = new UsuarioDAO();
         EventoDAO daoEvento = new EventoDAO();
         
-
-        try{
+        /* ### Métodos para testar o programa ### */ 
+        
+        /*try{
             Usuario usu = new Usuario("João","jobel","jobel@bol.com.br","123","123");
             dao.insere(usu);
         } catch (Exception e){
@@ -50,7 +52,14 @@ public class EventApp extends Application {
             daoEvento.insere(env);
         } catch (Exception e){
             System.out.println(e);
+        }*/
+        
+        ArrayList<Evento> eventos = new ArrayList();
+        eventos = daoEvento.listar();
+        for (Evento e : eventos) {
+            e.imprimeEvento();
         }
+        
         
         
         
