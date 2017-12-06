@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import eventapp.util.SceneManager;
+import javafx.scene.Scene;
 //import util.SceneManager;
 
 public class Controller_Login implements Initializable {
@@ -28,9 +30,18 @@ public class Controller_Login implements Initializable {
     @FXML
     private PasswordField txPass;  
     
+    @FXML
+    private void getSceneRegister() {
+        SceneManager sm = SceneManager.getInstance();
+        Scene cena = sm.loadScene("Scene_UserRegister");
+        sm.setSecondaryScene(cena);
+        //sm.getPrimaryStage().setMaximized(true);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
     
 }

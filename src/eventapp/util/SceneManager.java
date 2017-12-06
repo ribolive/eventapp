@@ -19,10 +19,10 @@ public class SceneManager {
     
     public SceneManager(){
         primaryStage = new Stage();
-        //primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/recursos/eta_icon.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon.png")));
         
         secondaryStage = new Stage();
-        //secondaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/recursos/eta_icon.png")));
+        secondaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon.png")));
         
         //Setando p/ que ao fechar o pai, iremos finalizar o filho(father = primary, sun = secondary)
         primaryStage.setOnCloseRequest((WindowEvent event) -> {
