@@ -36,16 +36,16 @@ public class EventApp extends Application {
         
         /* ### Novo usuário ### */ 
         
-        /*try{
-            Usuario usu = new Usuario("João","jobel4","jobel4@bol.com.br","12345","12345");
+        try{
+            Usuario usu = new Usuario("João","jobel5","jobel5@bol.com.br","12345","12345");
             dao.insere(usu);
         } catch (Exception e){
             System.out.println(e);
-        }*/
+        }
         
         Seguranca seg = Seguranca.getInstance();
         
-        if(seg.logar("jobel4","12345")){
+        if(seg.logar("jobel5","12345")){
             System.out.println("Sucesso!");
         } else {
             System.out.println("Fracasso");
