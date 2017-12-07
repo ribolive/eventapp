@@ -1,4 +1,4 @@
-package br.ufla.dcc.ppoo.modelos;
+package eventapp.models;
 
 public class Avaliacao {
     private int idUsuario;
