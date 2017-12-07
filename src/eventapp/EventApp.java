@@ -25,7 +25,7 @@ public class EventApp extends Application {
     }
 
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
         Conn con = new Conn();
         con.conectar();
         
@@ -36,20 +36,20 @@ public class EventApp extends Application {
         
         /* ### Novo usuário ### */ 
         
-        try{
-            Usuario usu = new Usuario("João","jobel5","jobel5@bol.com.br","12345","12345");
-            dao.insere(usu);
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        
-        Seguranca seg = Seguranca.getInstance();
-        
-        if(seg.logar("jobel5","12345")){
-            System.out.println("Sucesso!");
-        } else {
-            System.out.println("Fracasso");
-        }
+//        try{
+//            Usuario usu = new Usuario("João","jobel5","jobel5@bol.com.br","12345","12345");
+//            dao.insere(usu);
+//        } catch (Exception e){
+//            System.out.println(e);
+//        }
+//        
+//        Seguranca seg = Seguranca.getInstance();
+//        
+//        if(seg.logar("jobel5","12345")){
+//            System.out.println("Sucesso!");
+//        } else {
+//            System.out.println("Fracasso");
+//        }
         
         
         
@@ -93,19 +93,7 @@ public class EventApp extends Application {
         for (Evento e : eventos) {
             e.imprimeEvento();
         }*/
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+ 
     }
     
 }
