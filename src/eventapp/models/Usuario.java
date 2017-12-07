@@ -1,6 +1,7 @@
 package eventapp.models;
 
 import java.util.ArrayList;
+import eventapp.excecoes.UsuarioExcecao;
     
 public class Usuario {
     
@@ -11,8 +12,20 @@ public class Usuario {
     private String senha;
     
     public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
+        if (senha.equals("")){
+            throw new UsuarioExcecao("A senha não pode ser vazia");
+        }
         if (!senha.equals(confirmaSenha)){
-            throw new Exception("A senha e a senha de confirmação devem ser iguais");
+            throw new UsuarioExcecao("A senha e a senha de confirmação devem ser iguais");
+        }
+        if (nome.equals("")){
+            throw new UsuarioExcecao("O nome não pode ser vazio");
+        }
+        if (usuario.equals("")){
+            throw new UsuarioExcecao("O usuário não pode ser vazio");
+        }
+        if(email.equals("")){
+            throw new UsuarioExcecao("O email não deve ser vazio");
         }
         this.nome = nome;
         this.usuario = usuario;
