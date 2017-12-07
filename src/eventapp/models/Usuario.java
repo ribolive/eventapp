@@ -65,6 +65,13 @@ public class Usuario {
     public long getId() {
         return id;
     }
+    
+    /* Método de teste */
+    public void imprimeUsuario(){
+        System.out.println("Nome: "+this.nome);
+        System.out.println("Usuario: "+this.usuario);
+        System.out.println("Email: "+this.email);
+    }
 
     
     
