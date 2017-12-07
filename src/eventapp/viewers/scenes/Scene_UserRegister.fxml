@@ -10,8 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="416.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="eventapp.controllers.Controller_UserRegister">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="416.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_UserRegister">
    <children>
       <Pane prefHeight="54.0" prefWidth="416.0" style="-fx-background-color: FFAE68; -fx-border-color: 848975;">
          <children>
@@ -29,7 +28,7 @@
       </Pane>
       <Pane layoutY="54.0" prefHeight="353.0" prefWidth="416.0">
          <children>
-            <ImageView fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../recursos/eta_icon200.png" />
                </image>
@@ -63,15 +62,15 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="btnCancelar" layoutX="222.0" layoutY="317.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cancelar" />
-            <Button fx:id="btnCadastrar" layoutX="319.0" layoutY="317.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cadastrar" />
+            <Button fx:id="btnCancelar" layoutX="222.0" layoutY="312.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cancelar" />
+            <Button fx:id="btnCadastrar" layoutX="319.0" layoutY="313.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cadastrar" />
             <AnchorPane layoutX="129.0" layoutY="37.0">
                <children>
-                  <TextField layoutX="13.0" layoutY="158.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="165.0" />
-                  <TextField layoutX="15.0" layoutY="-10.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0" />
-                  <TextField layoutX="13.0" layoutY="215.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="225.0" />
-                  <TextField layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-                  <TextField layoutX="15.0" layoutY="108.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
+                  <TextField fx:id="txPass" layoutX="15.0" layoutY="158.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="165.0" />
+                  <TextField fx:id="txName" layoutX="15.0" layoutY="-10.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0" />
+                  <TextField fx:id="txConfirmPass" layoutX="15.0" layoutY="215.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="225.0" />
+                  <TextField fx:id="txUser" layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <TextField fx:id="txEmail" layoutX="15.0" layoutY="108.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
                </children>
             </AnchorPane>
          </children>

@@ -1,12 +1,15 @@
 package eventapp.util;
 
 import java.io.IOException;
+import java.util.Optional;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.WindowEvent;
 
@@ -19,10 +22,10 @@ public class SceneManager {
     
     public SceneManager(){
         primaryStage = new Stage();
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon200.png")));
         
         secondaryStage = new Stage();
-        secondaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon.png")));
+        secondaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon200.png")));
         
         //Setando p/ que ao fechar o pai, iremos finalizar o filho(father = primary, sun = secondary)
         primaryStage.setOnCloseRequest((WindowEvent event) -> {
@@ -91,6 +94,29 @@ public class SceneManager {
         Alert info = new Alert(type);
         info.setTitle(titulo);
         info.setContentText(conteudo);
+        
+        //Pegando o stage da tela
+        Stage stage = (Stage) info.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/eventapp/recursos/eta_icon64.png").toString()));
+        
         info.showAndWait();
+    }
+    
+    public boolean alertMsg(String titulo, String header, String conteudo, Alert.AlertType type){
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(conteudo);
+        
+        //Pegando o stage da tela & setando um icone a tela
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/eventapp/recursos/eta_icon64.png").toString()));
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
