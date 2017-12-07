@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="416.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_UserRegister">
+   <children>
+      <Pane prefHeight="54.0" prefWidth="416.0" style="-fx-background-color: FFAE68; -fx-border-color: 848975;">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="149.0" layoutY="1.0" prefHeight="52.0" prefWidth="119.0" text="Novo Usuário" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../recursos/eta_icon200.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutY="54.0" prefHeight="353.0" prefWidth="416.0">
+         <children>
+            <ImageView fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../recursos/eta_icon200.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="36.0" layoutY="37.0">
+               <children>
+                  <Label text="Nome" AnchorPane.topAnchor="-7.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="-5.0" layoutY="206.0" prefHeight="46.0" prefWidth="106.0" text="Confirmar senha" wrapText="true" AnchorPane.topAnchor="216.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="51.0" text="Usuario" AnchorPane.topAnchor="50.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="-2.0" layoutY="158.0" text="Senha" AnchorPane.topAnchor="165.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="104.0" text="Email" AnchorPane.topAnchor="108.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button fx:id="btnCancelar" layoutX="222.0" layoutY="312.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cancelar" />
+            <Button fx:id="btnCadastrar" layoutX="319.0" layoutY="313.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" style="-fx-background-radius: 10;" text="Cadastrar" />
+            <AnchorPane layoutX="129.0" layoutY="37.0">
+               <children>
+                  <TextField fx:id="txPass" layoutX="15.0" layoutY="158.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="165.0" />
+                  <TextField fx:id="txName" layoutX="15.0" layoutY="-10.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0" />
+                  <TextField fx:id="txConfirmPass" layoutX="15.0" layoutY="215.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="225.0" />
+                  <TextField fx:id="txUser" layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <TextField fx:id="txEmail" layoutX="15.0" layoutY="108.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

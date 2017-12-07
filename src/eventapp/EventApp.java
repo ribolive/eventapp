@@ -28,24 +28,6 @@ public class EventApp extends Application {
     
     /*### Participar de um evento ### */
     public static void main(String[] args) {
-        
-        Conn con = new Conn();
-        con.conectar();
-        
-//        Participa part = new Participa(2,1);
-        ParticipaDAO daoParticipa = new ParticipaDAO();
-        ArrayList<Evento> eventos = new ArrayList();
-        eventos = daoParticipa.listaEventosParticipante(1);
-        for (Evento evento : eventos){
-            evento.imprimeEvento();
-        }
-        
-        
-
-//        daoParticipa.insere(part); 
-//        
-//        daoParticipa.insereAvaliacao(2, 1, 1);
-//        daoParticipa.insereComentario(2, 1, "Esse evento tá uma porra")
 
     }
         
