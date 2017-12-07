@@ -90,9 +90,10 @@ public class SceneManager {
         this.primaryStage = primaryStage;
     }
     
-    public void alertMsg(String titulo, String conteudo, Alert.AlertType type){
+    public void alertMsg(String titulo,String header, String conteudo, Alert.AlertType type){
         Alert info = new Alert(type);
         info.setTitle(titulo);
+        info.setHeaderText(header);
         info.setContentText(conteudo);
         
         //Pegando o stage da tela
@@ -102,7 +103,7 @@ public class SceneManager {
         info.showAndWait();
     }
     
-    public boolean alertMsg(String titulo, String header, String conteudo, Alert.AlertType type){
+    public boolean alertMsg(String titulo, String header, String conteudo){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(header);

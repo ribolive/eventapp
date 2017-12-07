@@ -9,6 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import eventapp.DAO.UsuarioDAO;
+import eventapp.models.Usuario;
+import javafx.scene.control.PasswordField;
 
 public class Controller_UserRegister implements Initializable {
 
@@ -23,9 +26,9 @@ public class Controller_UserRegister implements Initializable {
     @FXML
     private TextField txEmail;
     @FXML
-    private TextField txPass;
+    private PasswordField txPass;
     @FXML
-    private TextField txConfirmPass;
+    private PasswordField txConfirmPass;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -34,11 +37,27 @@ public class Controller_UserRegister implements Initializable {
     
     public void cancelar(){
         boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
-                                                              "Deseja mesmo cancelar o cadastro?",
-                                                              "Clique em cancelar para continuar cadastrando",
-                                                              Alert.AlertType.CONFIRMATION);
+                                                              "Deseja cancelar o cadastro?",
+                                                              "Clique em cancelar para continuar cadastrando");
         if(confirm){
             SceneManager.getInstance().getSecondaryStage().close();
         }
+    }
+    
+    public void cadastrar() throws Exception{
+        try{
+            Usuario newUser = new Usuario(this.txName.getText(),
+                                          this.txUser.getText(),
+                                          this.txEmail.getText(),
+                                          this.txPass.getText(),
+                                          this.txConfirmPass.getText());
+            UsuarioDAO userDAO = new UsuarioDAO();
+            userDAO.insere(newUser);
+            SceneManager.getInstance().alertMsg("Cadastro","Cadastrado!","Agora voce", Alert.AlertType.NONE);
+            SceneManager.getInstance().getSecondaryStage().close();
+        } catch (Exception e){
+            SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar usuario!", e.getMessage(), Alert.AlertType.ERROR);
+        }
+        
     }
 }

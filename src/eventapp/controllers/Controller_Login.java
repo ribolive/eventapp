@@ -9,9 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import eventapp.util.SceneManager;
 import javafx.scene.Scene;
-//import util.SceneManager;
+import eventapp.util.SceneManager;
+import eventapp.util.Seguranca;
+import javafx.scene.control.Alert;
 
 public class Controller_Login implements Initializable {
 
@@ -43,5 +44,23 @@ public class Controller_Login implements Initializable {
         // TODO
     }    
     
+    public void logar(){
+        Seguranca chave = new Seguranca();
+        if(chave.logar(this.txUser.getText(), this.txPass.getText())){
+            SceneManager.getInstance().alertMsg("LOGADO","Sucesso!","Loguin realizado com sucesso", Alert.AlertType.INFORMATION);
+            SceneManager.getInstance().getPrimaryStage().close();
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO","Não foi possivel logar!","Usuario ou senha incorretos", Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void sair(){
+        boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                              "Tem certeza que deseja sair?",
+                                                              "Clique em cancelar para continuar no EventApp");
+        if(confirm){
+            SceneManager.getInstance().getSecondaryStage().close();
+        }
+    }
     
 }
