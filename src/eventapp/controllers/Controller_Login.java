@@ -43,7 +43,7 @@ public class Controller_Login implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+
     public void logar(){
         Seguranca chave = new Seguranca();
         if(chave.logar(this.txUser.getText(), this.txPass.getText())){
@@ -65,5 +65,5 @@ public class Controller_Login implements Initializable {
             SceneManager.getInstance().getSecondaryStage().close();
         }
     }
-    
+  
 }

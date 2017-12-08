@@ -13,13 +13,11 @@ public class Conn {
 
     }
     
-
     //Método de Conexão//
     public static java.sql.Connection conectar() {
         Connection connection = null;          //atributo do tipo Connection
 
         try {
-            System.out.println("Tentando");
             // Carregando o JDBC Driver padrão
             String driverName = "com.mysql.jdbc.Driver";
             Class.forName(driverName);
@@ -29,7 +27,7 @@ public class Conn {
             String mydatabase = "eventapp";
             String url = "jdbc:mysql://localhost/"+mydatabase+"?autoReconnect=true&useSSL=true";
             String username = "root";
-            String password = "";
+            String password = "admin";
             connection = DriverManager.getConnection(url, username, password);
 
             //Testa sua conexão// 

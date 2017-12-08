@@ -20,8 +20,10 @@ public class EventApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         SceneManager sManager = SceneManager.getInstance();
-        Scene cena = sManager.loadScene("Scene_Login");
+        Scene cena = sManager.loadScene("Scene_Login");     
         if (cena != null) {
+            sManager.getSecondaryStage().centerOnScreen();
+//            sManager.getSecondaryStage().setResizable(true);
             sManager.setPrimaryScene(cena);
         }
     }

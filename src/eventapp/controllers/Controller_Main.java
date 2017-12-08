@@ -21,7 +21,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,10 +36,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class Controller_Main implements Initializable {
 
     @FXML
-    private TableView<Evento> tableViewEvents;
+    private Button btnEvents;
     @FXML
-//    private TableColumn id_evento;
+    private Button btnMyEvents;
+    @FXML
+    private Button btnAbout;
+    @FXML
+    private Button btnQuit;
+    
+    @FXML
+    private TableView tableViewEvents;
+ 
 //    @FXML
+//    private TableColumn id_evento;
+    @FXML
     private TableColumn nome_evento;
     @FXML
     private TableColumn dataIni_evento;
@@ -56,24 +68,25 @@ public class Controller_Main implements Initializable {
             buscarEventosDaSemana();
         } catch (ParseException ex) {
             Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
  
-    public void buscarEventosDaSemana() throws ParseException{
+    public void buscarEventosDaSemana() throws ParseException, Exception{
         //estabelecendo um formato para data a ser passada ao banco
         DateFormat df = new SimpleDateFormat ("yyyy-MM-dd");
+        
         //capturando o inicio e o fim da semana
         Calendar cal = Calendar.getInstance();
         String dataStr = df.format(cal.getTime());
+        
         //convertendo data String para o tipo do banco de dados
         java.sql.Date data = new java.sql.Date(df.parse(dataStr).getTime());
         
         //puxando dados para construção da tabela
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorData(data);
-        for(Evento dado: lista){
-            dado.imprimeEvento();
-        }
         if (lista != null) {
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
@@ -85,7 +98,22 @@ public class Controller_Main implements Initializable {
             this.tableViewEvents.setItems(FXCollections.observableArrayList(lista));
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        }
-       
+        }     
     }
-}
+    
+    public void deslogar(){
+        boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                              "Tem certeza que deseja sair?",
+                                                              "Clique em cancelar para continuar no EventApp");
+        if(confirm){
+            //SceneManager.getInstance().getPrimaryStage().close();
+            //Voltando a tela de login
+            SceneManager sManager = SceneManager.getInstance();
+            Scene cena = sManager.loadScene("Scene_Login");
+            if (cena != null) {
+                sManager.getSecondaryStage().centerOnScreen();
+//                sManager.getSecondaryStage().setResizable(true);
+                sManager.setPrimaryScene(cena);
+            }
+        }
+    }}

@@ -12,20 +12,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="261.0" prefWidth="600.0" style="-fx-background-color: #FFAE68;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_Login">
    <children>
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="217.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="556.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../recursos/eta_icon200.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txUser" layoutX="185.0" layoutY="10.0" promptText="Usuario" />
+      <PasswordField fx:id="txPass" layoutX="351.0" layoutY="10.0" promptText="Senha" />
       <Button fx:id="btnLogin" layoutX="518.0" layoutY="10.0" mnemonicParsing="false" onAction="#logar" prefHeight="25.0" prefWidth="70.0" style="-fx-background-radius: 10;" text="Entrar" />
       <ImageView fx:id="imgBackGround" fitHeight="217.0" fitWidth="602.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../recursos/Mapa.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="217.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="556.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../recursos/eta_icon200.png" />
-         </image>
-      </ImageView>
       <Button fx:id="btnRegister" layoutX="518.0" layoutY="54.0" mnemonicParsing="false" onAction="#getSceneRegister" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: FFAE68; -fx-background-radius: 10;" text="Registrar" textFill="WHITE" />
-      <TextField fx:id="txUser" layoutX="185.0" layoutY="10.0" promptText="Usuario" />
-      <PasswordField fx:id="txPass" layoutX="351.0" layoutY="10.0" promptText="Senha" />
       <Button fx:id="btnExit" layoutX="518.0" layoutY="222.0" mnemonicParsing="false" onAction="#sair" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: FFAE68; -fx-background-radius: 10;" text="Sair" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

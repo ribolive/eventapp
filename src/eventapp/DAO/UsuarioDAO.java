@@ -34,7 +34,6 @@ public class UsuarioDAO {
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setString(1, login);
             senha = Seguranca.getInstance().hash("MD5", senha);
-            System.out.println(senha);
             ps.setString(2,senha);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();

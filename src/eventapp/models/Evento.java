@@ -25,11 +25,11 @@ public class Evento {
             throw new EventoExcecao("descrição");
         }
         
-        if (dataInicio.isEmpty()){
+        if (dataInicio == null){
             throw new EventoExcecao("data de início");
         }
         
-        if (dataFim.isEmpty()){
+        if (dataFim == null){
             throw new EventoExcecao("data de término");
         }
         
