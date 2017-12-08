@@ -11,7 +11,7 @@ import eventapp.util.Seguranca;
   
 public class UsuarioDAO {  
    
-    public Usuario insere(Usuario usuario){
+    public void insere(Usuario usuario){
         String sql = "INSERT into usuario (nome, usuario, email, senha) VALUES(?,?,?,?)";
         PreparedStatement ps;
         try{
@@ -23,11 +23,8 @@ public class UsuarioDAO {
             ps.setString(4,senhaCodificada);
             ps.executeUpdate();
             Conn.fecharConexao();
-            System.out.println("Cadastrado com sucesso!");
-            return null;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex);
-            return null;
         }
     }
     
@@ -41,14 +38,13 @@ public class UsuarioDAO {
             ps.setString(2,senha);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
-            Usuario usuario;
+            Usuario usuario = null;
             while(rs.next()){
                 usuario = new Usuario(rs.getString("nome"), rs.getString("usuario"), rs.getString("email"), rs.getString("senha"));
-                return usuario;
             }
-            return null;
-        } catch (Exception e) {
-            System.out.println(e);
+            return usuario;
+        } catch (SQLException e) {
+            System.err.println();
             return null;
         }
     }

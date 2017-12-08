@@ -1,4 +1,5 @@
 package eventapp.models;
+import eventapp.excecoes.EventoExcecao;
 
 public class Evento {
 
@@ -12,7 +13,27 @@ public class Evento {
     private String local; 
 
  
-    public Evento(String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local) {
+    public Evento(String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local) throws Exception{
+         if (nome.isEmpty()){
+            throw new EventoExcecao("nome");
+        }
+        
+        if (descricao.isEmpty()){
+            throw new EventoExcecao("descrição");
+        }
+        
+        if (dataInicio.isEmpty()){
+            throw new EventoExcecao("data de início");
+        }
+        
+        if (dataFim.isEmpty()){
+            throw new EventoExcecao("data de término");
+        }
+        
+        if (local.isEmpty()){
+            throw new EventoExcecao("local");
+        }
+        
         this.nome = nome;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
@@ -80,13 +101,6 @@ public class Evento {
         System.out.println("Nome: "+this.nome);
         System.out.println("Descricao: "+this.descricao);
     }
-    
-    
-  
-    
-    
-    
-    
-    
+
     
 }

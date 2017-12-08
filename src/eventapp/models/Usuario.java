@@ -1,7 +1,8 @@
 package eventapp.models;
 
-import java.util.ArrayList;
-    
+import eventapp.excecoes.UsuarioExcecao;
+import eventapp.excecoes.ConfirmaSenhaExcecao;
+        
 public class Usuario {
     
     private long id;
@@ -11,8 +12,20 @@ public class Usuario {
     private String senha;
     
     public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
+        if (senha.equals("")){
+            throw new UsuarioExcecao("senha");
+        }
         if (!senha.equals(confirmaSenha)){
-            throw new Exception("A senha e a senha de confirmação devem ser iguais");
+            throw new ConfirmaSenhaExcecao();
+        }
+        if (nome.equals("")){
+            throw new UsuarioExcecao("nome");
+        }
+        if (usuario.equals("")){
+            throw new UsuarioExcecao("usuário");
+        }
+        if(email.equals("")){
+            throw new UsuarioExcecao("email");
         }
         this.nome = nome;
         this.usuario = usuario;
