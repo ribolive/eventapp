@@ -12,7 +12,7 @@ public class Seguranca {
 
     private Usuario usuario;
 
-    private Seguranca() {
+    public Seguranca() {
         usuario = null;
     }
 

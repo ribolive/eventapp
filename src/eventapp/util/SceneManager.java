@@ -16,6 +16,10 @@ import javafx.stage.WindowEvent;
 public class SceneManager {
     
     private static SceneManager instance;
+
+    public static Object getInstace() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private Stage primaryStage;
     private Stage secondaryStage;
@@ -46,9 +50,8 @@ public class SceneManager {
     public FXMLLoader loadFXML(String nomeCena) {
         FXMLLoader loader = new FXMLLoader();
         try {
-            //System.out.println("URL: " + getClass().getResource("viewers/scenes/" + nomeCena + ".fxml"));
             loader.setLocation(getClass().getResource("/eventapp/viewers/scenes/" + nomeCena + ".fxml"));
-            loader.load();
+            loader.load();  
         } catch (IOException e) {
             System.err.println("Erro ao carregar cena ( " + nomeCena + " )");
             System.err.println("Erro: " + e.getLocalizedMessage());
@@ -90,19 +93,20 @@ public class SceneManager {
         this.primaryStage = primaryStage;
     }
     
-    public void alertMsg(String titulo, String conteudo, Alert.AlertType type){
+    public void alertMsg(String titulo,String header, String conteudo, Alert.AlertType type){
         Alert info = new Alert(type);
         info.setTitle(titulo);
+        info.setHeaderText(header);
         info.setContentText(conteudo);
         
         //Pegando o stage da tela
         Stage stage = (Stage) info.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/eventapp/recursos/eta_icon64.png").toString()));
-        
+                                                                 
         info.showAndWait();
     }
     
-    public boolean alertMsg(String titulo, String header, String conteudo, Alert.AlertType type){
+    public boolean alertMsg(String titulo, String header, String conteudo){
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(header);

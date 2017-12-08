@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import eventapp.models.Evento;
 import eventapp.util.Conn;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 
@@ -20,8 +21,8 @@ public class EventoDAO {
             ps = Conn.conectar().prepareStatement(sql);
             ps.setString(1,evento.getNome());
             ps.setString(2,evento.getDescricao());
-            ps.setString(3,evento.getDataInicio());
-            ps.setString(4,evento.getDataFim());
+            ps.setDate(3,evento.getDataInicio());
+            ps.setDate(4,evento.getDataFim());
             ps.setInt(5,evento.getIdUsuario());
             ps.setString(6,evento.getLocal());
             ps.executeUpdate();
@@ -42,8 +43,13 @@ public class EventoDAO {
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-            Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
-            eventos.add(e);
+                Evento e = new Evento(  rs.getString("nome"),
+                                        rs.getString("descricao"),
+                                        rs.getDate("data_inicio"),
+                                        rs.getDate("data_fim"),
+                                        rs.getInt("id_criador") ,
+                                        rs.getString("local_evento"));
+                eventos.add(e);
             }
             return eventos;
         } catch (Exception e) {
@@ -75,8 +81,8 @@ public class EventoDAO {
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setString(1, evento.getNome());
             ps.setString(2, evento.getDescricao());
-            ps.setString(3, evento.getDataInicio());
-            ps.setString(4, evento.getDataFim());
+            ps.setDate(3, evento.getDataInicio());
+            ps.setDate(4, evento.getDataFim());
             ps.setInt(5, evento.getIdUsuario());
             ps.setString(6, evento.getLocal());
             ps.setInt(7, evento.getId());
@@ -99,7 +105,12 @@ public class EventoDAO {
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             rs.next();
-            Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+            Evento e = new Evento(  rs.getString("nome"),
+                                    rs.getString("descricao"),
+                                    rs.getDate("data_inicio"),
+                                    rs.getDate("data_fim"),
+                                    rs.getInt("id_criador"),
+                                    rs.getString("local_evento"));
             return e;
         } catch (Exception e) {
             System.err.println(e);
@@ -115,7 +126,12 @@ public class EventoDAO {
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-                Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+                Evento e = new Evento(  rs.getString("nome"),
+                                        rs.getString("descricao"),
+                                        rs.getDate("data_inicio"),
+                                        rs.getDate("data_fim"),
+                                        rs.getInt("id_criador") ,
+                                        rs.getString("local_evento"));
                 eventos.add(e);
             }
             return eventos;
@@ -125,4 +141,32 @@ public class EventoDAO {
         }
     }
     
+    public ArrayList<Evento> buscarPorData(java.sql.Date DataAtual) {
+        try {
+            String sql = "SELECT nome, descricao, data_inicio, data_fim, id_criador, local_evento "
+                       + "FROM evento "
+                       + "where data_inicio <= '"+DataAtual+"' AND "
+                       + "data_fim >= '"+DataAtual+"' ";
+//            System.out.println(sql);
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+//            ps.setDate(1, DataAtual);
+//            ps.setDate(2, DataAtual);
+            ResultSet rs = ps.executeQuery();
+            Conn.fecharConexao();
+            ArrayList<Evento> eventos = new ArrayList();
+            while (rs.next()) {
+                eventos.add(new Evento( rs.getString("nome"),
+                                        rs.getString("descricao"),
+                                        rs.getDate("data_inicio"),
+                                        rs.getDate("data_fim"),
+                                        rs.getInt("id_criador"), 
+                                        rs.getString("local_evento")));
+                //e.imprimeEvento();
+            }
+            return eventos;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+        }
+    }
 }
