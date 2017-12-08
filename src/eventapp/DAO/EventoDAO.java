@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import eventapp.models.Evento;
 import eventapp.util.Conn;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 
@@ -124,4 +125,27 @@ public class EventoDAO {
         }
     }
     
+    public ArrayList<Evento> buscarPorData(java.sql.Date DataAtual) {
+        try {
+            String sql = "SELECT nome, descricao, data_inicio, data_fim, id_criador, local_evento "
+                       + "FROM evento "
+                       + "where data_inicio <= '"+DataAtual+"' AND "
+                       + "data_fim >= '"+DataAtual+"' ";
+            System.out.println(sql);
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+//            ps.setDate(1, DataAtual);
+//            ps.setDate(2, DataAtual);
+            ResultSet rs = ps.executeQuery();
+            Conn.fecharConexao();
+            ArrayList<Evento> eventos = new ArrayList();
+            while (rs.next()) {
+                Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+                eventos.add(e);
+            }
+            return eventos;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+        }
+    }
 }
