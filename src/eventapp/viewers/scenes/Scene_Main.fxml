@@ -14,11 +14,45 @@
    <children>
       <AnchorPane id="boxTop" layoutX="10.0" layoutY="8.0" prefHeight="127.0" prefWidth="748.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
-            <Button id="btnEvent" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Eventos" AnchorPane.bottomAnchor="21.0" AnchorPane.topAnchor="21.0">
-                <font>
-                  <Font name="Segoe UI" size="14.0" />
-               </font>
-            </Button>
+            <GridPane alignment="CENTER" layoutX="13.0" layoutY="22.0" prefHeight="83.0" prefWidth="734.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="22.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button id="btnEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="22.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="618.0" layoutY="22.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="22.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="489.0" layoutY="22.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Eventos" AnchorPane.bottomAnchor="21.0" AnchorPane.topAnchor="21.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
       <ImageView fitHeight="442.0" fitWidth="453.0" layoutX="153.0" layoutY="92.0" opacity="0.24" pickOnBounds="true" smooth="false" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="152.0">
@@ -35,10 +69,10 @@
                <columns>
                   <TableColumn fx:id="id_evento" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
                   <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="150.0" text="Nome" />
-                  <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="Data Inicio" />
+                  <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="data_inicio" />
                   <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="90.0" text="Data de termino" />
                   <TableColumn fx:id="local_evento" minWidth="-1.0" prefWidth="150.0" text="Local" />
-                  <TableColumn fx:id="responsavel_evento" minWidth="-1.0" prefWidth="150.0" text="Responsavel" />
+                  <TableColumn fx:id="responsavel_evento" minWidth="-1.0" prefWidth="150.0" text="Id Responsavel" />
                   <TableColumn fx:id="descricao_evento" minWidth="-1.0" prefWidth="200.0" text="Descrição" />
                </columns>
             </TableView>

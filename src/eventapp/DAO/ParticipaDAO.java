@@ -114,7 +114,7 @@ public class ParticipaDAO {
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-                Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getString("data_inicio"), rs.getString("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
+                Evento e = new Evento(rs.getString("nome"), rs.getString("descricao"), rs.getDate("data_inicio"), rs.getDate("data_fim"), rs.getInt("id_criador") ,rs.getString("local_evento"));
                 eventos.add(e);
             }
             return eventos;

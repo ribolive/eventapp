@@ -1,18 +1,20 @@
 package eventapp.models;
 
+import java.sql.Date;
+
 public class Evento {
 
     
     private int id;
     private String nome;
     private String descricao;
-    private String dataInicio; 
-    private String dataFim;
+    private Date dataInicio; 
+    private Date dataFim;
     private int idUsuario;
     private String local; 
 
  
-    public Evento(String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local) {
+    public Evento(String nome, String descricao, Date dataInicio, Date dataFim, int idUsuario, String local) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
@@ -37,19 +39,19 @@ public class Evento {
         this.descricao = descricao;
     }
 
-    public String getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(String dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public String getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(String dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -78,6 +80,10 @@ public class Evento {
     /* Método de teste */
     public void imprimeEvento(){
         System.out.println("Nome: "+this.nome);
+        System.out.println("Inicio: "+this.dataInicio);
+        System.out.println("Termino: "+this.dataFim);
+        System.out.println("Usuario: "+this.idUsuario);
+        System.out.println("local "+this.local);
         System.out.println("Descricao: "+this.descricao);
     }
     

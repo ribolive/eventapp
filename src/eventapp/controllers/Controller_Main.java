@@ -67,20 +67,25 @@ public class Controller_Main implements Initializable {
         String dataStr = df.format(cal.getTime());
         //convertendo data String para o tipo do banco de dados
         java.sql.Date data = new java.sql.Date(df.parse(dataStr).getTime());
+        
         //puxando dados para construção da tabela
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorData(data);
+        for(Evento dado: lista){
+            dado.imprimeEvento();
+        }
         if (lista != null) {
-            nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("data_inicio"));
-            dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("data_fim"));
-            local_evento.setCellValueFactory(new PropertyValueFactory<>("local_evento"));
-            responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("id_criador"));
-            descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-
-            tableViewEvents.setItems(FXCollections.observableArrayList(lista));
+            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            
+            this.tableViewEvents.setItems(FXCollections.observableArrayList(lista));
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
         }
+       
     }
 }
