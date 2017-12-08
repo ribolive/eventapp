@@ -1,5 +1,6 @@
 package eventapp.DAO;
 
+import eventapp.excecoes.EventoExcecao;
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class EventoDAO {
             Conn.fecharConexao();
             System.out.println("Cadastrado com sucesso!");
             return null;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex);
             return null;
         }
@@ -51,7 +52,7 @@ public class EventoDAO {
                 eventos.add(e);
             }
             return eventos;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e);
             return null;
         }
@@ -111,13 +112,13 @@ public class EventoDAO {
                                     rs.getInt("id_criador"),
                                     rs.getString("local_evento"));
             return e;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.err.println(e);
             return null;
         }
     }
     
-    public ArrayList<Evento> buscarPorNome(String nome) {
+    public ArrayList<Evento> buscarPorNome(String nome) throws SQLException, EventoExcecao, Exception {
         try {
             String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where nome like'%"+nome+"%' order by nome desc";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
@@ -134,7 +135,7 @@ public class EventoDAO {
                 eventos.add(e);
             }
             return eventos;
-        } catch (SQLException e) {
+        } catch (EventoExcecao | SQLException e) {
             System.err.println(e);
             return null;
         }

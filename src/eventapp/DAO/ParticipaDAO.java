@@ -45,7 +45,7 @@ public class ParticipaDAO {
             ps.executeUpdate();
             Conn.fecharConexao();
             System.out.println("Avaliacao guardada!");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex);
         }
     }
@@ -62,7 +62,7 @@ public class ParticipaDAO {
             ps.executeUpdate();
             Conn.fecharConexao();
             System.out.println("comentario guardado!");
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex);
         }
     }
@@ -78,7 +78,7 @@ public class ParticipaDAO {
             Conn.fecharConexao();
             rs.next();
             return (rs.getDouble("AVG(avaliacao)"));
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println(ex);
         }
         return 0.0;
@@ -105,7 +105,7 @@ public class ParticipaDAO {
     }
     
     // Retorna a lista de eventos que o usuário está participando
-    public ArrayList<Evento> listaEventosParticipante(int idUsuario){
+    public ArrayList<Evento> listaEventosParticipante(int idUsuario) throws Exception{
         try {
             String sql = "SELECT evento.nome, evento.descricao, evento.data_inicio, evento.data_fim, evento.id_criador, evento.local_evento FROM evento INNER JOIN participa ON evento.id = participa.id_evento where participa.id_usuario = ?";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
@@ -122,8 +122,5 @@ public class ParticipaDAO {
             System.err.println(e);
             return null;
         }   
-    }
-    
-    
-    
+    }    
 }
