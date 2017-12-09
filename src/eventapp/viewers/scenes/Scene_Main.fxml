@@ -27,44 +27,34 @@
                </columns>
             </TableView>
             <GridPane layoutX="150.0" layoutY="5.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <ImageView fitHeight="450.0" fitWidth="450.0" nodeOrientation="INHERIT" opacity="0.18" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <effect>
+                        <SepiaTone level="0.65" />
+                     </effect>
+                     <image>
+                        <Image url="@../../recursos/eta_icon200.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D height="200.0" width="200.0" />
+                     </viewport>
+                  </ImageView>
+               </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
-               <children>
-                  <ImageView fitHeight="450.0" fitWidth="450.0" nodeOrientation="INHERIT" opacity="0.18" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <image>
-                        <Image url="@../../recursos/eta_icon200.png" />
-                     </image>
-                     <effect>
-                        <SepiaTone level="0.65" />
-                     </effect>
-                     <viewport>
-                        <Rectangle2D height="200.0" width="200.0" />
-                     </viewport>
-                  </ImageView>
-               </children>
             </GridPane>
          </children>
       </AnchorPane>
       <AnchorPane id="boxTop" layoutX="10.0" layoutY="8.0" prefHeight="127.0" prefWidth="748.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <GridPane alignment="CENTER" layoutX="13.0" layoutY="22.0" prefHeight="83.0" prefWidth="734.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="22.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
                <children>
-                  <Button id="btnEvent" fx:id="btnEvents" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Eventos" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
-                      <font>
+                  <Button id="btnEvent" fx:id="btnEvents" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setScene_Events" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Eventos" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+                     <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
@@ -84,6 +74,16 @@
                      </font>
                   </Button>
                </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
             </GridPane>
          </children>
       </AnchorPane>

@@ -46,21 +46,21 @@ public class Controller_Main implements Initializable {
     
     @FXML
     private TableView tableViewEvents;
- 
-//    @FXML
-//    private TableColumn id_evento;
-    @FXML
-    private TableColumn nome_evento;
-    @FXML
-    private TableColumn dataIni_evento;
-    @FXML
-    private TableColumn dataFim_evento;
-    @FXML
-    private TableColumn local_evento;
-    @FXML
-    private TableColumn responsavel_evento;
-    @FXML
-    private TableColumn descricao_evento;
+        //Colunas do table view
+        @FXML
+        private TableColumn nome_evento;
+        @FXML
+        private TableColumn dataIni_evento;
+        @FXML
+        private TableColumn dataFim_evento;
+        @FXML
+        private TableColumn local_evento;
+        @FXML
+        private TableColumn responsavel_evento;
+        @FXML
+        private TableColumn descricao_evento;
+        @FXML
+        private TableColumn id_evento;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,6 +99,13 @@ public class Controller_Main implements Initializable {
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
         }     
+    }
+    
+    public void setScene_Events(){
+        SceneManager sm = SceneManager.getInstance();
+        Scene cena = sm.loadScene("Scene_Main");
+        //Inicia a cena de eventos (como primaria)
+        sm.setPrimaryScene(cena);   
     }
     
     public void deslogar(){
