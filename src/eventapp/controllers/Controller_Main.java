@@ -103,7 +103,7 @@ public class Controller_Main implements Initializable {
     
     public void setScene_Events(){
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_Main");
+        Scene cena = sm.loadScene("Scene_Events");
         //Inicia a cena de eventos (como primaria)
         sm.setPrimaryScene(cena);   
     }

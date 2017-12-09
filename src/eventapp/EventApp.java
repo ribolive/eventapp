@@ -22,8 +22,8 @@ public class EventApp extends Application {
         SceneManager sManager = SceneManager.getInstance();
         Scene cena = sManager.loadScene("Scene_Login");     
         if (cena != null) {
-            sManager.getSecondaryStage().centerOnScreen();
-//            sManager.getSecondaryStage().setResizable(true);
+            sManager.getPrimaryStage().centerOnScreen();
+            sManager.getPrimaryStage().setResizable(false);
             sManager.setPrimaryScene(cena);
         }
     }
