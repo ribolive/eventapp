@@ -80,7 +80,6 @@ public class Controller_Main implements Initializable {
         //capturando o inicio e o fim da semana
         Calendar cal = Calendar.getInstance();
         String dataStr = df.format(cal.getTime());
-        
         //convertendo data String para o tipo do banco de dados
         java.sql.Date data = new java.sql.Date(df.parse(dataStr).getTime());
         

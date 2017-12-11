@@ -35,6 +35,8 @@ public class Controller_Login implements Initializable {
     private void getSceneRegister() {
         SceneManager sm = SceneManager.getInstance();
         Scene cena = sm.loadScene("Scene_UserRegister");
+        sm.getPrimaryStage().centerOnScreen();
+        sm.getPrimaryStage().setResizable(false);
         sm.setSecondaryScene(cena);
         //sm.getPrimaryStage().setMaximized(true);
     }
@@ -64,7 +66,7 @@ public class Controller_Login implements Initializable {
                                                               "Tem certeza que deseja sair?",
                                                               "Clique em cancelar para continuar no EventApp");
         if(confirm){
-            SceneManager.getInstance().getSecondaryStage().close();
+            SceneManager.getInstance().getPrimaryStage().close();
         }
     }
   
