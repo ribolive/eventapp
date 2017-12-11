@@ -49,6 +49,8 @@ public class Controller_Login implements Initializable {
         if(chave.logar(this.txUser.getText(), this.txPass.getText())){
             SceneManager sm = SceneManager.getInstance();
             Scene cena2 = sm.loadScene("Scene_Main");
+            sm.getPrimaryStage().centerOnScreen();
+            sm.getPrimaryStage().setResizable(true);
             //Inicia a cena principal
             sm.setPrimaryScene(cena2);
             

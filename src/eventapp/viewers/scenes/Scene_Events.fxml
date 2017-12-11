@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_Events">
+   <children>
+      <AnchorPane id="boxTop" prefHeight="92.0" prefWidth="768.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <GridPane layoutX="18.0" layoutY="18.0" prefHeight="58.0" prefWidth="746.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="212.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="80.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label layoutX="20.0" layoutY="19.0" prefHeight="17.0" prefWidth="46.0" text="Nome" wrapText="true" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label layoutX="215.0" layoutY="18.0" prefHeight="18.0" prefWidth="263.0" text="Data (entre o inicio e o termino)" wrapText="true" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField maxWidth="200.0" minWidth="20.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <DatePicker maxWidth="200.0" minWidth="20.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Pesquisar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <GridPane layoutX="5.0" layoutY="98.0" prefHeight="501.0" prefWidth="768.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="160.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane id="boxTop" layoutX="630.0" layoutY="90.0" prefHeight="509.0" prefWidth="143.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" GridPane.columnIndex="1">
+               <children>
+                  <GridPane layoutX="14.0" layoutY="14.0" prefHeight="478.0" prefWidth="120.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button layoutX="14.0" layoutY="455.0" mnemonicParsing="false" onAction="#setScene_Main" prefHeight="40.0" prefWidth="120.0" text="Voltar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button layoutX="14.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Cadastrar" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button layoutX="14.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Excluir" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="509.0" prefWidth="622.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="151.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tvEvents" layoutX="7.0" layoutY="4.0" prefHeight="416.0" prefWidth="740.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn fx:id="id_evento" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
+                        <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="150.0" text="Nome" />
+                        <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="data_inicio" />
+                        <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="90.0" text="Data de termino" />
+                        <TableColumn fx:id="local_evento" minWidth="-1.0" prefWidth="150.0" text="Local" />
+                        <TableColumn fx:id="responsavel_evento" minWidth="-1.0" prefWidth="150.0" text="Id Responsavel" />
+                        <TableColumn fx:id="descricao_evento" minWidth="-1.0" prefWidth="200.0" text="Descrição" />
+                     </columns>
+                  </TableView>
+                  <GridPane layoutX="150.0" layoutY="5.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="450.0" fitWidth="450.0" nodeOrientation="INHERIT" opacity="0.18" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../../recursos/eta_icon200.png" />
+                           </image>
+                           <effect>
+                              <SepiaTone level="0.65" />
+                           </effect>
+                           <viewport>
+                              <Rectangle2D height="200.0" width="200.0" />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
