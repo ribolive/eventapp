@@ -29,6 +29,7 @@ public class Controller_eventRegister implements Initializable {
     
     public void btnCadastrarClick(){
         Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
-        userLogado.imprimeUsuario();
+//        System.out.println(userLogado.getId());   Retorna o ide do usuario logado
+        
     }
 }
