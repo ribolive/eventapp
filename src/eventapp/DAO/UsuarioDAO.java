@@ -34,12 +34,16 @@ public class UsuarioDAO {
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setString(1, login);
             senha = Seguranca.getInstance().hash("MD5", senha);
-            ps.setString(2,senha);
+            ps.setString(2, senha);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             Usuario usuario = null;
             while(rs.next()){
-                usuario = new Usuario(rs.getString("nome"), rs.getString("usuario"), rs.getString("email"), rs.getString("senha"));
+                usuario = new Usuario(  rs.getInt("id"),
+                                        rs.getString("nome"),
+                                        rs.getString("usuario"),
+                                        rs.getString("email"),
+                                        rs.getString("senha"));
             }
             return usuario;
         } catch (SQLException e) {

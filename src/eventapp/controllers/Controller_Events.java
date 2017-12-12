@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,7 +73,7 @@ public class Controller_Events implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        SceneManager.getInstance().getPrimaryStage().setResizable(false);
     }    
     
     public void setScene_Main(){
@@ -85,15 +86,24 @@ public class Controller_Events implements Initializable {
     public void buscarEventosPorData() throws Exception{
         //  estabelecendo um formato para data a ser passada ao banco
 //        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateFormat df = new SimpleDateFormat ("yyyy-MM-dd");
-        //  convertendo data String para o tipo do banco de dados
-        String strData = dpData.getValue().toString();
-        java.sql.Date data = new java.sql.Date(df.parse(strData).getTime());
-        
-        //  puxando dados para construção da tabela
+        java.sql.Date data;    
+        String strData = (String) dpData.getValue().toString();
+        System.out.println("ANTES IF");
+        if (!(strData.isEmpty())) {            
+            System.out.println("entrou");
+            DateFormat df = new SimpleDateFormat ("yyyy-MM-dd");
+            //  convertendo data String para o tipo do banco de dados
+            data = new java.sql.Date(df.parse(strData).getTime());
+
+            //  puxando dados para construção da tabela
+        } else {
+            System.out.println("saiu");
+            data = null;
+        }
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorData(data);
         if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
             this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
@@ -110,7 +120,11 @@ public class Controller_Events implements Initializable {
     public void buscarEventosPorNome() throws EventoExcecao, Exception{
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorNome(txNome.getText());
+//        for(Evento dado: lista){
+//            dado.imprimeEvento();
+//        }
         if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
             this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
@@ -122,5 +136,25 @@ public class Controller_Events implements Initializable {
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
         } 
+    }
+
+    
+    public void deletar() {
+        EventoDAO evDao = new EventoDAO();
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+//        selected.imprimeEvento();
+        if (evDao.deletar(selected)) {
+            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+            tvEvents.getSelectionModel().selectedItemProperty().removeListener((InvalidationListener) selected);
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnCadastrarClick(){
+        SceneManager sm = SceneManager.getInstance();
+        Scene cena = sm.loadScene("Scene_EventRegister");
+        //Inicia a cena de eventos (como primaria)
+        sm.setSecondaryScene(cena); 
     }
 }

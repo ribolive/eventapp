@@ -14,10 +14,12 @@ public class Evento {
     private int idUsuario;
     private String local; 
 
- 
 
-    public Evento(String nome, String descricao, Date dataInicio, Date dataFim, int idUsuario, String local) throws Exception{
-         if (nome.isEmpty()){
+    public Evento(int id, String nome, String descricao, Date dataInicio, Date dataFim, int idUsuario, String local) throws Exception{
+         if (id < 0){
+            throw new EventoExcecao("id");
+        }
+        if (nome.isEmpty()){
             throw new EventoExcecao("nome");
         }
         
@@ -36,7 +38,37 @@ public class Evento {
         if (local.isEmpty()){
             throw new EventoExcecao("local");
         }
-      
+        
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.idUsuario = idUsuario;
+        this.local = local;
+    }
+    
+    public Evento(String nome, String descricao, Date dataInicio, Date dataFim, int idUsuario, String local) throws Exception{
+        if (nome.isEmpty()){
+            throw new EventoExcecao("nome");
+        }
+        
+        if (descricao.isEmpty()){
+            throw new EventoExcecao("descrição");
+        }
+        
+        if (dataInicio == null){
+            throw new EventoExcecao("data de início");
+        }
+        
+        if (dataFim == null){
+            throw new EventoExcecao("data de término");
+        }
+        
+        if (local.isEmpty()){
+            throw new EventoExcecao("local");
+        }
+        
         this.nome = nome;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
@@ -101,6 +133,7 @@ public class Evento {
     
     /* Método de teste */
     public void imprimeEvento(){
+        System.out.println("Id: "+this.id);
         System.out.println("Nome: "+this.nome);
         System.out.println("Inicio: "+this.dataInicio);
         System.out.println("Termino: "+this.dataFim);

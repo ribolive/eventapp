@@ -37,13 +37,14 @@ public class EventoDAO {
     
     public ArrayList<Evento> listar() {
         try {
-            String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento order by nome desc";
+            String sql = "SELECT id, nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento order by nome desc";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-                Evento e = new Evento(  rs.getString("nome"),
+                Evento e = new Evento(  rs.getInt("id"),
+                                        rs.getString("nome"),
                                         rs.getString("descricao"),
                                         rs.getDate("data_inicio"),
                                         rs.getDate("data_fim"),
@@ -56,6 +57,11 @@ public class EventoDAO {
             System.err.println(e);
             return null;
         }
+    }
+    public boolean deletar(Evento objEv){
+        System.out.println(objEv.getId());
+        System.out.println(objEv.getNome());
+        return this.deletar(objEv.getId());
     }
     
     public boolean deletar(int id) {
@@ -99,13 +105,14 @@ public class EventoDAO {
     
     public Evento procurarPorId(int id) {
         try {
-            String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where id = ? order by nome desc";
+            String sql = "SELECT id, nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where id = ? order by nome desc";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             rs.next();
-            Evento e = new Evento(  rs.getString("nome"),
+            Evento e = new Evento(  rs.getInt("id"),
+                                    rs.getString("nome"),
                                     rs.getString("descricao"),
                                     rs.getDate("data_inicio"),
                                     rs.getDate("data_fim"),
@@ -120,13 +127,14 @@ public class EventoDAO {
     
     public ArrayList<Evento> buscarPorNome(String nome) throws SQLException, EventoExcecao, Exception {
         try {
-            String sql = "SELECT nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where nome like'%"+nome+"%' order by nome desc";
+            String sql = "SELECT id, nome,descricao,data_inicio,data_fim,id_criador,local_evento FROM evento where nome like'%"+nome+"%' order by nome desc";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-                Evento e = new Evento(  rs.getString("nome"),
+                Evento e = new Evento(  rs.getInt("id"),
+                                        rs.getString("nome"),
                                         rs.getString("descricao"),
                                         rs.getDate("data_inicio"),
                                         rs.getDate("data_fim"),
@@ -143,16 +151,19 @@ public class EventoDAO {
     
     public ArrayList<Evento> buscarPorData(java.sql.Date DataAtual) throws Exception {
         try {
-            String sql = "SELECT nome, descricao, data_inicio, data_fim, id_criador, local_evento "
-                       + "FROM evento "
-                       + "where data_inicio <= '"+DataAtual+"' AND "
-                       + "data_fim >= '"+DataAtual+"' ";
+            String sql = "SELECT id, nome, descricao, data_inicio, data_fim, id_criador, local_evento "
+                       + "FROM evento ";
+            if(DataAtual != null){
+                   sql += "where data_inicio <= '"+DataAtual+"' AND "
+                        + "data_fim >= '"+DataAtual+"' ";
+            }
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Conn.fecharConexao();
             ArrayList<Evento> eventos = new ArrayList();
             while (rs.next()) {
-                eventos.add(new Evento( rs.getString("nome"),
+                eventos.add(new Evento( rs.getInt("id"),
+                                        rs.getString("nome"),
                                         rs.getString("descricao"),
                                         rs.getDate("data_inicio"),
                                         rs.getDate("data_fim"),

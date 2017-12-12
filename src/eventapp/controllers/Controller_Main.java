@@ -64,6 +64,8 @@ public class Controller_Main implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        SceneManager.getInstance().getPrimaryStage().centerOnScreen();
         try {
             buscarEventosDaSemana();
         } catch (ParseException ex) {
@@ -87,6 +89,7 @@ public class Controller_Main implements Initializable {
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorData(data);
         if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
             this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
@@ -123,3 +126,4 @@ public class Controller_Main implements Initializable {
             }
         }
     }}
+    

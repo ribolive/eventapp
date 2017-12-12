@@ -96,14 +96,14 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button layoutX="14.0" layoutY="455.0" mnemonicParsing="false" onAction="#setScene_Main" prefHeight="40.0" prefWidth="120.0" text="Voltar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                        <Button fx:id="btnVoltar" layoutX="14.0" layoutY="455.0" mnemonicParsing="false" onAction="#setScene_Main" prefHeight="40.0" prefWidth="120.0" text="Voltar" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button layoutX="14.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Cadastrar" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Button layoutX="14.0" layoutY="132.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Excluir" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnEditar" layoutX="14.0" layoutY="70.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnCadastrar" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnCadastrarClick" prefHeight="40.0" prefWidth="120.0" text="Cadastrar" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Button fx:id="btnExcluir" layoutX="14.0" layoutY="132.0" mnemonicParsing="false" onAction="#deletar" prefHeight="40.0" prefWidth="120.0" text="Excluir" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
@@ -112,7 +112,7 @@
                <children>
                   <TableView fx:id="tvEvents" layoutX="7.0" layoutY="4.0" prefHeight="416.0" prefWidth="740.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn fx:id="id_evento" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
+                        <TableColumn fx:id="id_evento" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
                         <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="150.0" text="Nome" />
                         <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="data_inicio" />
                         <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="90.0" text="Data de termino" />

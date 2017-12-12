@@ -17,7 +17,7 @@
          <children>
             <TableView fx:id="tableViewEvents" layoutX="7.0" layoutY="4.0" prefHeight="416.0" prefWidth="740.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="id_evento" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
+                  <TableColumn fx:id="id_evento" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
                   <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="150.0" text="Nome" />
                   <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="data_inicio" />
                   <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="90.0" text="Data de termino" />
