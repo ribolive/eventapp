@@ -1,33 +1,56 @@
 package eventapp.util;
 
 import eventapp.excecoes.sqlExcecao;
+import eventapp.org.json.JSONObject;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.apache.commons.io.IOUtils;
+
+
+
 
 public class Conn {
     
     private static String status = "Desconectado";
-    private String nome;
+    private static String nome;
+    private static String serverName;
+    private static String myDataBase;
+    private static String url;
+    private static String username;
+    private static String password;
     
     public Conn() {
-
+        
     }
     
     //Método de Conexão//
-    public static java.sql.Connection conectar() throws SQLException, ClassNotFoundException, sqlExcecao {
+    public static java.sql.Connection conectar() throws SQLException, ClassNotFoundException, sqlExcecao, FileNotFoundException, IOException {
+        
+        File f = new File("./dist/config_db.json");
+        if (f.exists()){
+            InputStream is = new FileInputStream("./dist/config_db.json");
+            String jsonTxt = IOUtils.toString(is, "UTF-8");
+            JSONObject json = new JSONObject(jsonTxt);       
+            Conn.url = json.getString("url");
+            Conn.username = json.getString("username");
+            Conn.password = json.getString("password");
+        }
+        
+        
+        
         Connection connection = null;          //atributo do tipo Connection
         // Carregando o JDBC Driver padrão
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
 
         //Parametros de configuralão da conexão
-        String serverName = "";
-        String mydatabase = "eventapp";
-        String url = "jdbc:mysql://localhost/"+mydatabase+"?autoReconnect=true&useSSL=true";
-        String username = "root";
-        String password = "admin";
-        connection = DriverManager.getConnection(url, username, password);
+        connection = DriverManager.getConnection(Conn.url, Conn.username, Conn.password);
 
         //Testa sua conexão// 
         if (connection != null) {
@@ -44,7 +67,7 @@ public class Conn {
     }
 
     //Método que fecha conexão//
-    public static boolean fecharConexao() throws ClassNotFoundException, sqlExcecao {
+    public static boolean fecharConexao() throws ClassNotFoundException, sqlExcecao, IOException {
         try {
             Conn.conectar().close();
             return true;
@@ -54,7 +77,7 @@ public class Conn {
     }
 
     //Método que reinicia conexão
-    public static java.sql.Connection reiniciarConexao() throws SQLException, ClassNotFoundException, sqlExcecao {
+    public static java.sql.Connection reiniciarConexao() throws SQLException, ClassNotFoundException, sqlExcecao, IOException {
         fecharConexao();
         return Conn.conectar();
     }    
