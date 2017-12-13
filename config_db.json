@@ -1,0 +1,5 @@
+{
+	"url" : "jdbc:mysql://localhost/eventapp?autoReconnect=true&useSSL=true",
+	"username" : "root",
+	"password" : "123"
+}

@@ -32,9 +32,9 @@ public class Conn {
     //Método de Conexão//
     public static java.sql.Connection conectar() throws SQLException, ClassNotFoundException, sqlExcecao, FileNotFoundException, IOException {
         
-        File f = new File("./dist/config_db.json");
+        File f = new File("config_db.json");
         if (f.exists()){
-            InputStream is = new FileInputStream("./dist/config_db.json");
+            InputStream is = new FileInputStream("config_db.json");
             String jsonTxt = IOUtils.toString(is, "UTF-8");
             JSONObject json = new JSONObject(jsonTxt);       
             Conn.url = json.getString("url");
