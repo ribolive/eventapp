@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author Gabriel_Note
  */
-public class Controller_eventRegister implements Initializable {
+public class Controller_EventRegister implements Initializable {
 
     
     @FXML
@@ -61,7 +61,15 @@ public class Controller_eventRegister implements Initializable {
             SceneManager.getInstance().getSecondaryStage().close();
         } catch (Exception e){
             SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar Eveto!", e.getMessage(), Alert.AlertType.ERROR);
+        }   
+    }
+    
+    public void btnCancelarOnClick(){
+        boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                              "Deseja cancelar o cadastro?",
+                                                              "Clique em cancelar para continuar cadastrando");
+        if(confirm){
+            SceneManager.getInstance().getSecondaryStage().close();
         }
-        
     }
 }

@@ -28,7 +28,7 @@
       </Pane>
       <Pane layoutY="54.0" prefHeight="353.0" prefWidth="416.0">
          <children>
-            <ImageView fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../recursos/eta_icon200.png" />
                </image>

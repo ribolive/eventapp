@@ -110,6 +110,13 @@ public class Controller_Main implements Initializable {
         sm.setPrimaryScene(cena);   
     }
     
+    public void setScene_MyEvents(){
+        SceneManager sm = SceneManager.getInstance();
+        Scene cena = sm.loadScene("Scene_MyEvents");
+        //Inicia a cena de eventos (como primaria)
+        sm.setPrimaryScene(cena);   
+    }
+    
     public void deslogar(){
         boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
                                                               "Tem certeza que deseja sair?",

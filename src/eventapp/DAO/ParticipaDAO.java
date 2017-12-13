@@ -121,5 +121,23 @@ public class ParticipaDAO {
             System.err.println(e);
             return null;
         }   
-    }    
+    }   
+    
+    // excluindo participação do usuario
+    public boolean deletar(int idUsuario, int idEvento) throws Exception{
+        try {
+            String sql = "DELETE FROM participa WHERE id_usuario = ? and id_evento = ?";
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ps.setInt(1, idUsuario);
+            ps.setInt(2, idEvento);
+            if (ps.executeUpdate() != 0) {
+                Conn.fecharConexao();
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }
+    }   
 }

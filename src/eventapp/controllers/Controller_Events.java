@@ -53,11 +53,9 @@ public class Controller_Events implements Initializable {
     @FXML
     private Button btnCadastrar;
     @FXML
-    private Button btnEditar;
-    @FXML
-    private Button btnExcluir;
-    @FXML
     private Button btnVoltar;
+    @FXML
+    private Button btnParticipar;
     
     @FXML
     private TableView tvEvents;
