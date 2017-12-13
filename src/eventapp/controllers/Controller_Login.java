@@ -1,5 +1,6 @@
 package eventapp.controllers;
 
+import eventapp.excecoes.ErroLoginException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
+import java.sql.SQLException;
 import javafx.scene.control.Alert;
 
 public class Controller_Login implements Initializable {
@@ -45,15 +47,16 @@ public class Controller_Login implements Initializable {
         SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
 
-    public void logar(){
+    public void logar() throws SQLException{
         Seguranca chave = Seguranca.getInstance();
-        if(chave.logar(this.txUser.getText(), this.txPass.getText())){
+        try {
+            chave.logar(this.txUser.getText(), this.txPass.getText());
             SceneManager sm = SceneManager.getInstance();
             Scene cena2 = sm.loadScene("Scene_Main");
             //Inicia a cena principal
             sm.setPrimaryScene(cena2);
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO","Não foi possivel logar!","Usuario ou senha incorretos", Alert.AlertType.ERROR);
+        } catch(ErroLoginException ex) {
+            SceneManager.getInstance().alertMsg("ERRO","Não foi possivel logar!",ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
     

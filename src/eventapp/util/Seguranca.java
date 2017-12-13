@@ -3,7 +3,9 @@ package eventapp.util;
 import java.math.BigInteger;
 import java.security.*;
 import eventapp.DAO.UsuarioDAO;
+import eventapp.excecoes.ErroLoginException;
 import eventapp.models.Usuario;
+import java.sql.SQLException;
 
 
 public class Seguranca {
@@ -37,10 +39,10 @@ public class Seguranca {
         }
     }
 
-    public boolean logar(String login, String senha) {
+    public void logar(String login, String senha) throws ErroLoginException, SQLException {
         UsuarioDAO dao = new UsuarioDAO();
         this.usuario = dao.select(login, senha);
-        return usuario != null;
+
     }
 
     public Usuario getUsuarioLogado() {

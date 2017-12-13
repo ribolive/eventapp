@@ -1,5 +1,6 @@
 package eventapp.DAO;
 
+import eventapp.excecoes.ErroLoginException;
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ import eventapp.util.Seguranca;
   
 public class UsuarioDAO {  
    
-    public void insere(Usuario usuario){
+    public void insere(Usuario usuario)throws Exception {
         String sql = "INSERT into usuario (nome, usuario, email, senha) VALUES(?,?,?,?)";
         PreparedStatement ps;
         try{
@@ -24,31 +25,29 @@ public class UsuarioDAO {
             ps.executeUpdate();
             Conn.fecharConexao();
         } catch (SQLException ex) {
-            System.err.println(ex);
+            throw new Exception();
         }
     }
     
-    public Usuario select(String login, String senha){
-        try{
-            String sql = "SELECT * from usuario where usuario = ? and senha = ?";
-            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
-            ps.setString(1, login);
-            senha = Seguranca.getInstance().hash("MD5", senha);
-            ps.setString(2, senha);
-            ResultSet rs = ps.executeQuery();
-            Conn.fecharConexao();
-            Usuario usuario = null;
-            while(rs.next()){
-                usuario = new Usuario(  rs.getInt("id"),
-                                        rs.getString("nome"),
-                                        rs.getString("usuario"),
-                                        rs.getString("email"),
-                                        rs.getString("senha"));
-            }
-            return usuario;
-        } catch (SQLException e) {
-            System.err.println();
-            return null;
+    public Usuario select(String login, String senha)throws ErroLoginException, SQLException{
+        String sql = "SELECT * from usuario where usuario = ? and senha = ?";
+        PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+        ps.setString(1, login);
+        senha = Seguranca.getInstance().hash("MD5", senha);
+        ps.setString(2, senha);
+        ResultSet rs = ps.executeQuery();
+        Conn.fecharConexao();
+        Usuario usuario = null;
+        while(rs.next()){
+            usuario = new Usuario(  rs.getInt("id"),
+                                    rs.getString("nome"),
+                                    rs.getString("usuario"),
+                                    rs.getString("email"),
+                                    rs.getString("senha"));
         }
+        if (usuario == null) {
+            throw new ErroLoginException("Usuario ou senha incorretos");
+        }
+        return usuario;
     }
 }

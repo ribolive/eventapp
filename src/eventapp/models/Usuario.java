@@ -2,6 +2,7 @@ package eventapp.models;
 
 import eventapp.excecoes.UsuarioExcecao;
 import eventapp.excecoes.ConfirmaSenhaExcecao;
+import eventapp.excecoes.ErroLoginException;
         
 public class Usuario {
     
@@ -12,19 +13,19 @@ public class Usuario {
     private String senha;
        
     public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
-        if (senha.equals("")){
+        if (senha.isEmpty()){
             throw new UsuarioExcecao("senha");
         }
         if (!senha.equals(confirmaSenha)){
             throw new ConfirmaSenhaExcecao();
         }
-        if (nome.equals("")){
+        if (nome.isEmpty()){
             throw new UsuarioExcecao("nome");
         }
-        if (usuario.equals("")){
+        if (usuario.isEmpty()){
             throw new UsuarioExcecao("usuário");
         }
-        if(email.equals("")){
+        if(email.isEmpty()){
             throw new UsuarioExcecao("email");
         }
         this.nome = nome;
@@ -40,7 +41,7 @@ public class Usuario {
         this.senha = senha;    
     }
     
-    public Usuario(int id, String nome, String usuario, String email, String senha){ 
+    public Usuario(int id, String nome, String usuario, String email, String senha) throws ErroLoginException{ 
         this.id = id;
         this.nome = nome;
         this.usuario = usuario;
