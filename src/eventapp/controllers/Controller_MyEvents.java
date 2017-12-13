@@ -78,7 +78,7 @@ public class Controller_MyEvents implements Initializable {
             SceneManager.getInstance().getPrimaryStage().setResizable(false);
             popularTela();
         } catch (Exception ex) {
-            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos \n Erro:" + ex.getMessage(), Alert.AlertType.ERROR);
         }
     }   
     
@@ -119,11 +119,12 @@ public class Controller_MyEvents implements Initializable {
     }
     
     public void btnDeletarOnClick() throws Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        int id = selected.getId();
         try{
             EventoDAO evDao = new EventoDAO();
             ParticipaDAO partDao = new ParticipaDAO();
-            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-            partDao.deletar(selected.getId());
+            partDao.deletar(id);
             evDao.deletar(selected);
             SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
             popularTela();
@@ -133,22 +134,66 @@ public class Controller_MyEvents implements Initializable {
     }
     
     public void btnEditarOnCLick() throws Exception{
-        try {
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-        
+        try {
             if (selected != null) {
                 Controller_EdicaoEvento.getInstance().setObjEvento(selected);
                 SceneManager sm = SceneManager.getInstance();
                 Scene cena = sm.loadScene("Scene_EvEdit");
                 //Inicia a cena de eventos (como primaria)
                 sm.setSecondaryScene(cena);
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
-             SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", e.getMessage(), Alert.AlertType.ERROR);
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
     
     public void btnAtualizaOnClick() throws Exception{
         popularTela();
+    }
+    
+     public void buscarEventosPorData() throws Exception{
+        java.sql.Date data;
+        if (dpData.getValue() != null) {         
+            //  puxando dados para construção da tabela
+            data = java.sql.Date.valueOf(dpData.getValue());
+        } else {
+            data = null;
+        }
+        EventoDAO evDao = new EventoDAO();
+        ArrayList<Evento> lista = evDao.buscarMeusPorData((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
+        if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            
+            this.tvEvents.setItems(FXCollections.observableArrayList(lista));
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+        }     
+    }
+    
+    public void buscarEventosPorNome() throws EventoExcecao, Exception{
+        EventoDAO evDao = new EventoDAO();
+        ArrayList<Evento> lista = evDao.buscarMeusPorNome((int) Seguranca.getInstance().getUsuarioLogado().getId(), txNome.getText());
+        if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            
+            this.tvEvents.setItems(FXCollections.observableArrayList(lista));
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+        } 
     }
 }

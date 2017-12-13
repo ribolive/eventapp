@@ -111,9 +111,11 @@ public class ParticipaDAO {
         String sql = "DELETE FROM participa WHERE id_evento = ?";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);
         ps.setInt(1, idEvento);
-        if (ps.executeUpdate() == 0) {
-             throw new sqlExcecao("Não foi possivel deletar participação");
+        System.out.println("ola");
+        if(ps.executeUpdate() != 0) {
+            throw new sqlExcecao("Não foi possivel deletar participação");
         }
+        System.out.println(" mundo");
         Conn.fecharConexao();
     }  
 }

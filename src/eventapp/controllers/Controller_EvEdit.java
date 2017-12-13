@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -38,6 +39,8 @@ public class Controller_EvEdit implements Initializable {
     private DatePicker dpDataFim;
     @FXML
     private TextArea txDescricao;
+    @FXML
+    private Button btnEditar;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +76,6 @@ public class Controller_EvEdit implements Initializable {
                                             java.sql.Date.valueOf(this.dpDataFim.getValue()),
                                             evAtual.getIdUsuario(),
                                             this.txLocal.getText());
-            
             EventoDAO eventDAO = new EventoDAO();
             eventDAO.atualizar(newEvent);
             SceneManager.getInstance().alertMsg("Editor","Editado com Sucesso!","Evento editado com sucesso", Alert.AlertType.INFORMATION);
