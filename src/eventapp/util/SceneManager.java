@@ -40,7 +40,6 @@ public class SceneManager {
     /* Caso ja tenha uma instancia criada, nao criamos outra
        Mas sim retornamos a ja criada, estando ela na primaryStage ou na SecondaryStage */
     public static SceneManager getInstance(){
-        
         if(instance == null){
             instance = new SceneManager();
         }

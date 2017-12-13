@@ -35,27 +35,23 @@ public class Controller_Login implements Initializable {
     private void getSceneRegister() {
         SceneManager sm = SceneManager.getInstance();
         Scene cena = sm.loadScene("Scene_UserRegister");
-        sm.getPrimaryStage().centerOnScreen();
-        sm.getPrimaryStage().setResizable(false);
         sm.setSecondaryScene(cena);
         //sm.getPrimaryStage().setMaximized(true);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        SceneManager.getInstance().getPrimaryStage().setResizable(true);
+        SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
 
     public void logar(){
-        Seguranca chave = new Seguranca();
+        Seguranca chave = Seguranca.getInstance();
         if(chave.logar(this.txUser.getText(), this.txPass.getText())){
             SceneManager sm = SceneManager.getInstance();
             Scene cena2 = sm.loadScene("Scene_Main");
-            sm.getPrimaryStage().centerOnScreen();
-            sm.getPrimaryStage().setResizable(true);
             //Inicia a cena principal
             sm.setPrimaryScene(cena2);
-            
         } else {
             SceneManager.getInstance().alertMsg("ERRO","Não foi possivel logar!","Usuario ou senha incorretos", Alert.AlertType.ERROR);
         }

@@ -13,7 +13,9 @@ public class Seguranca {
     private Usuario usuario;
 
     public Seguranca() {
-        usuario = null;
+        if (instance == null) {
+            this.usuario = null;
+        }
     }
 
     public static Seguranca getInstance() {

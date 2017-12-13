@@ -10,7 +10,7 @@ public class Usuario {
     private String usuario;
     private String email;
     private String senha;
-    
+       
     public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
         if (senha.equals("")){
             throw new UsuarioExcecao("senha");
@@ -40,7 +40,13 @@ public class Usuario {
         this.senha = senha;    
     }
     
-    
+    public Usuario(int id, String nome, String usuario, String email, String senha){ 
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.email = email;
+        this.senha = senha;    
+    }
         
 
     public String getNome() {
@@ -81,9 +87,11 @@ public class Usuario {
     
     /* Método de teste */
     public void imprimeUsuario(){
+        System.out.println("Id: "+this.id);
         System.out.println("Nome: "+this.nome);
         System.out.println("Usuario: "+this.usuario);
         System.out.println("Email: "+this.email);
+        System.out.println("senha(md5): "+this.senha);
     }
 
     
