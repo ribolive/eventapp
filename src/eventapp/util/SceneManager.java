@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class SceneManager {
@@ -26,14 +27,40 @@ public class SceneManager {
     
     public SceneManager(){
         primaryStage = new Stage();
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon200.png")));
         
         secondaryStage = new Stage();
+        //secondaryStage.initStyle(StageStyle.UNDECORATED);
         secondaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/eventapp/recursos/eta_icon200.png")));
         
         //Setando p/ que ao fechar o pai, iremos finalizar o filho(father = primary, sun = secondary)
-        primaryStage.setOnCloseRequest((WindowEvent event) -> {
-            secondaryStage.close();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                              "Deseja fechar o EventApp",
+                                                              "Clique em cancelar para continuar no sistema");
+                if(confirm){
+                    secondaryStage.close();
+                } else {
+                    event.consume();
+                }
+            }               
+        });
+        
+        secondaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                              "Realmente deseja fechar",
+                                                              "Clique em cancelar para continuar");
+                if(confirm){
+                    secondaryStage.close();
+                } else {
+                    event.consume();
+                }
+            }               
         });
     }
     

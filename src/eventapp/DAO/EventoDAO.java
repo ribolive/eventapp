@@ -27,7 +27,6 @@ public class EventoDAO {
             ps.setString(6,evento.getLocal());
             ps.executeUpdate();
             Conn.fecharConexao();
-            System.out.println("Cadastrado com sucesso!");
             return null;
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -59,8 +58,6 @@ public class EventoDAO {
         }
     }
     public boolean deletar(Evento objEv){
-        System.out.println(objEv.getId());
-        System.out.println(objEv.getNome());
         return this.deletar(objEv.getId());
     }
     
@@ -70,7 +67,6 @@ public class EventoDAO {
             PreparedStatement stmt = Conn.conectar().prepareStatement(sql);
             if (stmt.executeUpdate() != 0) {
                 Conn.fecharConexao();
-                System.out.println("Evento excluído com sucesso");
                 return true;
             }
             return false;
@@ -95,7 +91,6 @@ public class EventoDAO {
 
             ps.executeUpdate();
             Conn.fecharConexao();
-            System.out.println("Atualização ocorrida com sucesso");
             return true;
         } catch (SQLException e) {
             System.err.println(e);
