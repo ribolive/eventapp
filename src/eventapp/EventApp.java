@@ -15,10 +15,24 @@ import eventapp.util.SceneManager;
 //import eventapp.models.Participa;
 //import java.util.ArrayList;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+ 
+import eventapp.org.json.JSONArray;
+import eventapp.org.json.JSONObject;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import org.apache.commons.io.IOUtils;
+
 public class EventApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
+        
+        
+        
         SceneManager sManager = SceneManager.getInstance();
         Scene cena = sManager.loadScene("Scene_Login");     
         if (cena != null) {
