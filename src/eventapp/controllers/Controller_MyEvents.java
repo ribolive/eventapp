@@ -130,5 +130,9 @@ public class Controller_MyEvents implements Initializable {
     
     public void btnEditarOnCLick(){
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        SceneManager sm = SceneManager.getInstance();
+        Scene cena = sm.loadScene("Scene_EventRegister");
+        //Inicia a cena de eventos (como primaria)
+        sm.setSecondaryScene(cena); 
     }
 }

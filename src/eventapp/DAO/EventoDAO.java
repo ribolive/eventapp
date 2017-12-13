@@ -186,7 +186,7 @@ public class EventoDAO {
             String sql = "SELECT id, nome,descricao,data_inicio,data_fim,id_criador,local_evento "+
                          "FROM evento "+
                          "where nome like'%"+nome+"%' and "+
-                         "id_usuario = ? "+
+                         "id_criador = ? "+
                          "order by nome desc";
             PreparedStatement ps = Conn.conectar().prepareStatement(sql);
             ps.setInt(1, userId);

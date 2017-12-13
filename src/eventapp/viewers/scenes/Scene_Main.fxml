@@ -28,7 +28,7 @@
             </TableView>
             <GridPane layoutX="150.0" layoutY="5.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <ImageView fitHeight="450.0" fitWidth="450.0" nodeOrientation="INHERIT" opacity="0.18" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <ImageView disable="true" fitHeight="450.0" fitWidth="450.0" nodeOrientation="INHERIT" opacity="0.18" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <effect>
                         <SepiaTone level="0.65" />
                      </effect>
@@ -58,12 +58,12 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
-                  <Button id="btnEvent" fx:id="btnMyEvents" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+                  <Button id="btnEvent" fx:id="btnMyEvents" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setScene_MyEvents" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Meus Eventos" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
-                  <Button id="btnEvent" fx:id="btnAbout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Sobre Nós" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+                  <Button id="btnEvent" fx:id="btnAbout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Minha Agenda" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

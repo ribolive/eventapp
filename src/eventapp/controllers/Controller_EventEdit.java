@@ -24,9 +24,8 @@ import javafx.scene.control.TextField;
  *
  * @author Gabriel_Note
  */
-public class Controller_eventRegister implements Initializable {
+public class Controller_EventEdit implements Initializable {
 
-    
     @FXML
     private TextField txNome;
     @FXML
@@ -43,25 +42,8 @@ public class Controller_eventRegister implements Initializable {
         SceneManager.getInstance().getPrimaryStage().setResizable(false);
     }    
     
-    public void btnCadastrarClick(){
-        try{
-            Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
-    //        System.out.println(userLogado.getId());   Retorna o ide do usuario logado
-
-            Evento newEvent = new Evento(   this.txNome.getText(),
-                                            this.txDescricao.getText(),
-                                            java.sql.Date.valueOf(this.dpDataIni.getValue()),
-                                            java.sql.Date.valueOf(this.dpDataFim.getValue()),
-                                            (int) userLogado.getId(),
-                                            this.txLocal.getText());
-            
-            EventoDAO eventDAO = new EventoDAO();
-            eventDAO.insere(newEvent);
-            SceneManager.getInstance().alertMsg("Cadastro","Cadastrado!","Evento cadastrado com sucesso, gerente do Evento: "+userLogado.getNome(), Alert.AlertType.INFORMATION);
-            SceneManager.getInstance().getSecondaryStage().close();
-        } catch (Exception e){
-            SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar Eveto!", e.getMessage(), Alert.AlertType.ERROR);
-        }   
+    public void btnEditarOnClick(){
+        
     }
     
     public void btnCancelarOnClick(){
