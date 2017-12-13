@@ -132,10 +132,15 @@ public class Controller_MyEvents implements Initializable {
     
     public void btnEditarOnCLick(){
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-        Controller_EdicaoEvento.getInstance().setObjEvento(selected);
-        SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_EvEdit");
-        //Inicia a cena de eventos (como primaria)
-        sm.setSecondaryScene(cena); 
+        if (selected != null) {
+            Controller_EdicaoEvento.getInstance().setObjEvento(selected);
+            SceneManager sm = SceneManager.getInstance();
+            Scene cena = sm.loadScene("Scene_EvEdit");
+            //Inicia a cena de eventos (como primaria)
+            sm.setSecondaryScene(cena);
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se o evento desejado esteja selecionado", Alert.AlertType.ERROR);
+        }
+         
     }
 }
