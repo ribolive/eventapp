@@ -66,11 +66,12 @@ public class Controller_EventEdit implements Initializable {
     public void btnEditarOnClick(){        
         Evento evAtual = Controller_EdicaoEvento.getInstance().getObjEvento();
         try{        
-            Evento newEvent = new Evento(   this.txNome.getText(),
+            Evento newEvent = new Evento(   evAtual.getId(),
+                                            this.txNome.getText(),
                                             this.txDescricao.getText(),
                                             java.sql.Date.valueOf(this.dpDataIni.getValue()),
                                             java.sql.Date.valueOf(this.dpDataFim.getValue()),
-                                            evAtual.getId(),
+                                            evAtual.getIdUsuario(),
                                             this.txLocal.getText());
             
             EventoDAO eventDAO = new EventoDAO();
@@ -78,7 +79,7 @@ public class Controller_EventEdit implements Initializable {
             SceneManager.getInstance().alertMsg("Editor","Editado com Sucesso!","Evento editado com sucesso", Alert.AlertType.INFORMATION);
             SceneManager.getInstance().getSecondaryStage().close();
         } catch (Exception e){
-            SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar Eveto!", e.getMessage(), Alert.AlertType.ERROR);
+            SceneManager.getInstance().alertMsg("Erro","Erro ao Editar Eveto!", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 }

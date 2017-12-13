@@ -49,6 +49,8 @@ public class Controller_MyEvents implements Initializable {
     private Button btnDeletar;
     @FXML
     private Button btnVoltar;
+    @FXML
+    private Button btnAtualiza;
     
     @FXML
     private TableView tvEvents;
@@ -120,17 +122,24 @@ public class Controller_MyEvents implements Initializable {
     
     public void btnDeletarOnClick() throws Exception{
         EventoDAO evDao = new EventoDAO();
+        ParticipaDAO partDao = new ParticipaDAO();
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
 //        selected.imprimeEvento();
-        if (evDao.deletar(selected)) {
-            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-            popularTela();
+        if (selected != null) {
+            if (partDao.deletar(selected.getId())){
+                if (evDao.deletar(selected)){
+                    SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+                    popularTela();
+                } else {
+                    SceneManager.getInstance().alertMsg("ERRO", "Erro ao deletar evento", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
+                }
+            }
         } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", "Verifique se o evento desejado esteja selecionado", Alert.AlertType.ERROR);
         }
     }
     
-    public void btnEditarOnCLick(){
+    public void btnEditarOnCLick() throws Exception{
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         if (selected != null) {
             Controller_EdicaoEvento.getInstance().setObjEvento(selected);
@@ -141,6 +150,9 @@ public class Controller_MyEvents implements Initializable {
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se o evento desejado esteja selecionado", Alert.AlertType.ERROR);
         }
-         
+    }
+    
+    public void btnAtualizaOnClick() throws Exception{
+        popularTela();
     }
 }

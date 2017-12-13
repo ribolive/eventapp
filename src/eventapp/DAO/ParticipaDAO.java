@@ -140,4 +140,20 @@ public class ParticipaDAO {
             return false;
         }
     }   
+
+    public boolean deletar(int idEvento) throws Exception{
+        try {
+            String sql = "DELETE FROM participa WHERE id_evento = ?";
+            PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+            ps.setInt(1, idEvento);
+            if (ps.executeUpdate() != 0) {
+                Conn.fecharConexao();
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+        }
+    }  
 }
