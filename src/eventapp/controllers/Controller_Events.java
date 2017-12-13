@@ -74,7 +74,7 @@ public class Controller_Events implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         SceneManager.getInstance().getPrimaryStage().setResizable(false);
-    }    
+    }   
     
     public void setScene_Main(){
         SceneManager sm = SceneManager.getInstance();
@@ -86,18 +86,11 @@ public class Controller_Events implements Initializable {
     public void buscarEventosPorData() throws Exception{
         //  estabelecendo um formato para data a ser passada ao banco
 //        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        java.sql.Date data;    
-        String strData = (String) dpData.getValue().toString();
-        System.out.println("ANTES IF");
-        if (!(strData.isEmpty())) {            
-            System.out.println("entrou");
-            DateFormat df = new SimpleDateFormat ("yyyy-MM-dd");
-            //  convertendo data String para o tipo do banco de dados
-            data = new java.sql.Date(df.parse(strData).getTime());
-
+        java.sql.Date data;
+        if (dpData.getValue() != null) {         
             //  puxando dados para construção da tabela
+            data = java.sql.Date.valueOf(dpData.getValue());
         } else {
-            System.out.println("saiu");
             data = null;
         }
         EventoDAO evDao = new EventoDAO();

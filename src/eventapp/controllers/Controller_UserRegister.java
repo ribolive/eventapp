@@ -53,7 +53,7 @@ public class Controller_UserRegister implements Initializable {
                                           this.txConfirmPass.getText());
             UsuarioDAO userDAO = new UsuarioDAO();
             userDAO.insere(newUser);
-            SceneManager.getInstance().alertMsg("Cadastro","Cadastrado!","Agora voce", Alert.AlertType.NONE);
+            SceneManager.getInstance().alertMsg("Cadastro","Cadastrado!","permição de autentificaçao concedida para "+this.txName.getText(), Alert.AlertType.INFORMATION);
             SceneManager.getInstance().getSecondaryStage().close();
         } catch (Exception e){
             SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar usuario!", e.getMessage(), Alert.AlertType.ERROR);
