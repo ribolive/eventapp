@@ -63,7 +63,7 @@
                         <Font name="Segoe UI" size="14.0" />
                      </font>
                   </Button>
-                  <Button id="btnEvent" fx:id="btnAbout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Minha Agenda" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+                  <Button id="btnEvent" fx:id="btnAbout" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="83.0" prefWidth="109.0" style="-fx-background-repeat: no-repeat; -fx-background-position: 90%; -fx-padding: 5 22 5 22; -fx-border-width: 2; -fx-background-color: #fff; -fx-background-radius: 15; -fx-border-color: #FC7844; -fx-border-radius: 15; -fx-border-repeat: no-repeat; -fx-background-position: center;" text="Minha Agenda" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font>

@@ -8,10 +8,12 @@ package eventapp.controllers;
 import eventapp.DAO.EventoDAO;
 import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
+import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -76,7 +78,7 @@ public class Controller_MyEvents implements Initializable {
             SceneManager.getInstance().getPrimaryStage().setResizable(false);
             popularTela();
         } catch (Exception ex) {
-            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos \n Erro:" + ex.getMessage(), Alert.AlertType.ERROR);
         }
     }   
     
@@ -93,6 +95,75 @@ public class Controller_MyEvents implements Initializable {
 //        for(Evento dado: lista){
 //            dado.imprimeEvento();
 //        }
+        this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+        this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+        this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+        this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+
+        this.tvEvents.setItems(FXCollections.observableArrayList(lista));
+    }
+    
+    public void btnNotParticiparOnClick() throws sqlExcecao, SQLException, ClassNotFoundException, Exception{
+        try {
+            ParticipaDAO partDao = new ParticipaDAO();
+            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+            partDao.deletar((int)selected.getIdUsuario(), (int)selected.getId());
+            SceneManager.getInstance().alertMsg("Sucesso", "Você deixou um evento", "Agora voce não esta mais participando do evento "+selected.getNome(), Alert.AlertType.INFORMATION);
+            popularTela();
+        } catch (Exception e){
+            SceneManager.getInstance().alertMsg("ERRO", "Erro ao deixar evento", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnDeletarOnClick() throws Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        int id = selected.getId();
+        try{
+            EventoDAO evDao = new EventoDAO();
+            ParticipaDAO partDao = new ParticipaDAO();
+            partDao.deletar(id);
+            evDao.deletar(selected);
+            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+            popularTela();
+        } catch (Exception e) {
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnEditarOnCLick() throws Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        try {
+            if (selected != null) {
+                Controller_EdicaoEvento.getInstance().setObjEvento(selected);
+                SceneManager sm = SceneManager.getInstance();
+                Scene cena = sm.loadScene("Scene_EvEdit");
+                //Inicia a cena de eventos (como primaria)
+                sm.setSecondaryScene(cena);
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnAtualizaOnClick() throws Exception{
+        popularTela();
+    }
+    
+     public void buscarEventosPorData() throws Exception{
+        java.sql.Date data;
+        if (dpData.getValue() != null) {         
+            //  puxando dados para construção da tabela
+            data = java.sql.Date.valueOf(dpData.getValue());
+        } else {
+            data = null;
+        }
+        EventoDAO evDao = new EventoDAO();
+        ArrayList<Evento> lista = evDao.buscarMeusPorData((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
         if (lista != null) {
             this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -105,54 +176,24 @@ public class Controller_MyEvents implements Initializable {
             this.tvEvents.setItems(FXCollections.observableArrayList(lista));
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        }    
+        }     
     }
     
-    public void btnNotParticiparOnClick() throws Exception{
-        ParticipaDAO partDao = new ParticipaDAO();
-        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-//        selected.imprimeEvento();
-        if (partDao.deletar((int)selected.getIdUsuario(), (int)selected.getId())) {
-            SceneManager.getInstance().alertMsg("Sucesso", "Você deixou um evento", "Agora voce não esta mais participando do evento "+selected.getNome(), Alert.AlertType.INFORMATION);
-            popularTela();
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Erro ao deixar evento", "Não foi possivel deixar de participar desse evento", Alert.AlertType.ERROR);
-        }
-    }
-    
-    public void btnDeletarOnClick() throws Exception{
+    public void buscarEventosPorNome() throws EventoExcecao, Exception{
         EventoDAO evDao = new EventoDAO();
-        ParticipaDAO partDao = new ParticipaDAO();
-        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-//        selected.imprimeEvento();
-        if (selected != null) {
-            if (partDao.deletar(selected.getId())){
-                if (evDao.deletar(selected)){
-                    SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-                    popularTela();
-                } else {
-                    SceneManager.getInstance().alertMsg("ERRO", "Erro ao deletar evento", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
-                }
-            }
+        ArrayList<Evento> lista = evDao.buscarMeusPorNome((int) Seguranca.getInstance().getUsuarioLogado().getId(), txNome.getText());
+        if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            
+            this.tvEvents.setItems(FXCollections.observableArrayList(lista));
         } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", "Verifique se o evento desejado esteja selecionado", Alert.AlertType.ERROR);
-        }
-    }
-    
-    public void btnEditarOnCLick() throws Exception{
-        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            Controller_EdicaoEvento.getInstance().setObjEvento(selected);
-            SceneManager sm = SceneManager.getInstance();
-            Scene cena = sm.loadScene("Scene_EvEdit");
-            //Inicia a cena de eventos (como primaria)
-            sm.setSecondaryScene(cena);
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se o evento desejado esteja selecionado", Alert.AlertType.ERROR);
-        }
-    }
-    
-    public void btnAtualizaOnClick() throws Exception{
-        popularTela();
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+        } 
     }
 }

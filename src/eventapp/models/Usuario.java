@@ -13,12 +13,7 @@ public class Usuario {
     private String senha;
        
     public Usuario(String nome, String usuario, String email, String senha, String confirmaSenha) throws Exception{ 
-        if (senha.isEmpty()){
-            throw new UsuarioExcecao("senha");
-        }
-        if (!senha.equals(confirmaSenha)){
-            throw new ConfirmaSenhaExcecao();
-        }
+        
         if (nome.isEmpty()){
             throw new UsuarioExcecao("nome");
         }
@@ -27,6 +22,12 @@ public class Usuario {
         }
         if(email.isEmpty()){
             throw new UsuarioExcecao("email");
+        }
+        if (senha.isEmpty()){
+            throw new UsuarioExcecao("senha");
+        }
+        if (!senha.equals(confirmaSenha)){
+            throw new ConfirmaSenhaExcecao();
         }
         this.nome = nome;
         this.usuario = usuario;
@@ -82,7 +83,10 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public long getId() {
+    public long getId() throws UsuarioExcecao {
+        if(this.id < 1){
+            throw new UsuarioExcecao("Id não valido");
+        }
         return id;
     }
     

@@ -1,5 +1,6 @@
 package eventapp.util;
 
+import eventapp.excecoes.sqlExcecao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,36 +15,27 @@ public class Conn {
     }
     
     //Método de Conexão//
-    public static java.sql.Connection conectar() {
+    public static java.sql.Connection conectar() throws SQLException, ClassNotFoundException, sqlExcecao {
         Connection connection = null;          //atributo do tipo Connection
+        // Carregando o JDBC Driver padrão
+        String driverName = "com.mysql.jdbc.Driver";
+        Class.forName(driverName);
 
-        try {
-            // Carregando o JDBC Driver padrão
-            String driverName = "com.mysql.jdbc.Driver";
-            Class.forName(driverName);
+        //Parametros de configuralão da conexão
+        String serverName = "";
+        String mydatabase = "eventapp";
+        String url = "jdbc:mysql://localhost/"+mydatabase+"?autoReconnect=true&useSSL=true";
+        String username = "root";
+        String password = "admin";
+        connection = DriverManager.getConnection(url, username, password);
 
-            //Parametros de configuralão da conexão
-            String serverName = "";
-            String mydatabase = "eventapp";
-            String url = "jdbc:mysql://localhost/"+mydatabase+"?autoReconnect=true&useSSL=true";
-            String username = "root";
-            String password = "admin";
-            connection = DriverManager.getConnection(url, username, password);
-
-            //Testa sua conexão// 
-            if (connection != null)
-                status = ("Conectado");
-
-            return connection;
-
-        } catch (ClassNotFoundException e) {  //Driver não encontrado
-            System.out.println("O driver expecificado nao foi encontrado." + e);
-            return null;
-        } catch (SQLException e) {
-            //Não conseguindo se conectar ao banco
-            System.out.println("\nNao foi possivel conectar ao Banco de Dados." + e);
-            return null;
+        //Testa sua conexão// 
+        if (connection != null) {
+            status = ("Conectado");
+        } else {
+            throw new sqlExcecao("Não foi possível conectar com o banco de dados");
         }
+        return connection;
     }
 
     //Método que retorna o status da sua conexão//
@@ -52,7 +44,7 @@ public class Conn {
     }
 
     //Método que fecha conexão//
-    public static boolean fecharConexao() {
+    public static boolean fecharConexao() throws ClassNotFoundException, sqlExcecao {
         try {
             Conn.conectar().close();
             return true;
@@ -62,7 +54,7 @@ public class Conn {
     }
 
     //Método que reinicia conexão
-    public static java.sql.Connection reiniciarConexao() {
+    public static java.sql.Connection reiniciarConexao() throws SQLException, ClassNotFoundException, sqlExcecao {
         fecharConexao();
         return Conn.conectar();
     }    

@@ -1,12 +1,14 @@
 package eventapp.DAO;
 
 import eventapp.excecoes.ErroLoginException;
+import eventapp.excecoes.sqlExcecao;
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
 import java.sql.SQLException;
 import eventapp.models.Usuario;
 import eventapp.util.Conn;
 import eventapp.util.Seguranca;
+import java.security.NoSuchAlgorithmException;
 
 
   
@@ -15,21 +17,17 @@ public class UsuarioDAO {
     public void insere(Usuario usuario)throws Exception {
         String sql = "INSERT into usuario (nome, usuario, email, senha) VALUES(?,?,?,?)";
         PreparedStatement ps;
-        try{
-            ps = Conn.conectar().prepareStatement(sql);
-            ps.setString(1,usuario.getNome());
-            ps.setString(2,usuario.getUsuario());
-            ps.setString(3,usuario.getEmail());
-            String senhaCodificada = Seguranca.getInstance().hash("MD5", usuario.getSenha());
-            ps.setString(4,senhaCodificada);
-            ps.executeUpdate();
-            Conn.fecharConexao();
-        } catch (SQLException ex) {
-            throw new Exception();
-        }
+        ps = Conn.conectar().prepareStatement(sql);
+        ps.setString(1,usuario.getNome());
+        ps.setString(2,usuario.getUsuario());
+        ps.setString(3,usuario.getEmail());
+        String senhaCodificada = Seguranca.getInstance().hash("MD5", usuario.getSenha());
+        ps.setString(4,senhaCodificada);
+        ps.executeUpdate();
+        Conn.fecharConexao();
     }
     
-    public Usuario select(String login, String senha)throws ErroLoginException, SQLException{
+    public Usuario select(String login, String senha)throws ErroLoginException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao{
         String sql = "SELECT * from usuario where usuario = ? and senha = ?";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);
         ps.setString(1, login);
