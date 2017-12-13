@@ -9,8 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="332.0" prefWidth="545.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="eventapp.controllers.Controller_eventRegister">
+<AnchorPane id="AnchorPane" prefHeight="332.0" prefWidth="545.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_eventRegister">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="61.0" prefWidth="604.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
          <children>
@@ -125,7 +124,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnCancelar" layoutX="414.0" layoutY="281.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Cancelar" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <Button fx:id="btnCancelar" layoutX="414.0" layoutY="281.0" mnemonicParsing="false" onAction="#btnCancelarOnClick" prefHeight="25.0" prefWidth="73.0" text="Cancelar" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="20.0" right="10.0" />
                </GridPane.margin>
