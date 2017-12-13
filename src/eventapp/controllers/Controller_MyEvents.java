@@ -6,6 +6,7 @@
 package eventapp.controllers;
 
 import eventapp.DAO.EventoDAO;
+import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
 import eventapp.models.Evento;
 import eventapp.util.SceneManager;
@@ -41,11 +42,9 @@ public class Controller_MyEvents implements Initializable {
     @FXML
     private Button btnPesqData;
     @FXML
-    private Button btnCadastrar;
-    @FXML
     private Button btnEditar;
     @FXML
-    private Button btnExcluir;
+    private Button btnDeletar;
     @FXML
     private Button btnVoltar;
     
@@ -105,4 +104,31 @@ public class Controller_MyEvents implements Initializable {
         }    
     }
     
+    public void btnNotParticiparOnClick() throws Exception{
+        ParticipaDAO partDao = new ParticipaDAO();
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+//        selected.imprimeEvento();
+        if (partDao.deletar((int)selected.getIdUsuario(), (int)selected.getId())) {
+            SceneManager.getInstance().alertMsg("Sucesso", "Você deixou um evento", "Agora voce não esta mais participando do evento "+selected.getNome(), Alert.AlertType.INFORMATION);
+            popularTela();
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro ao deixar evento", "Não foi possivel deixar de participar desse evento", Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnDeletarOnClick() throws Exception{
+        EventoDAO evDao = new EventoDAO();
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+//        selected.imprimeEvento();
+        if (evDao.deletar(selected)) {
+            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+            popularTela();
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
+        }
+    }
+    
+    public void btnEditarOnCLick(){
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+    }
 }
