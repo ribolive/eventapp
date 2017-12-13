@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.*;
 import eventapp.DAO.UsuarioDAO;
 import eventapp.excecoes.ErroLoginException;
+import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Usuario;
 import java.sql.SQLException;
 
@@ -27,19 +28,15 @@ public class Seguranca {
         return instance;
     }
 
-    public String hash(String tipo, String texto) {
-        try {
-            MessageDigest senhaCodificada = MessageDigest.getInstance(tipo);
-            senhaCodificada.update(texto.getBytes(), 0, texto.length());
-            BigInteger i = new BigInteger(1, senhaCodificada.digest());
-            texto = String.format("%1$032X", i);
-            return texto;
-        } catch (NoSuchAlgorithmException ex) {
-            return "";
-        }
+    public String hash(String tipo, String texto) throws NoSuchAlgorithmException {
+        MessageDigest senhaCodificada = MessageDigest.getInstance(tipo);
+        senhaCodificada.update(texto.getBytes(), 0, texto.length());
+        BigInteger i = new BigInteger(1, senhaCodificada.digest());
+        texto = String.format("%1$032X", i);
+        return texto;
     }
 
-    public void logar(String login, String senha) throws ErroLoginException, SQLException {
+    public void logar(String login, String senha) throws ErroLoginException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao {
         UsuarioDAO dao = new UsuarioDAO();
         this.usuario = dao.select(login, senha);
 

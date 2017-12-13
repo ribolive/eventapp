@@ -8,6 +8,7 @@ package eventapp.controllers;
 import eventapp.DAO.EventoDAO;
 import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
+import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.models.Participa;
 import eventapp.models.Usuario;
@@ -164,14 +165,15 @@ public class Controller_Events implements Initializable {
 
     
     public void deletar() throws Exception {
-        EventoDAO evDao = new EventoDAO();
-        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-//        selected.imprimeEvento();
-        if (evDao.deletar(selected)) {
+        try{
+            EventoDAO evDao = new EventoDAO();
+            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+    //        selected.imprimeEvento();
+            evDao.deletar(selected);
             SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
             buscarEventosPorNome();
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
     
@@ -183,17 +185,18 @@ public class Controller_Events implements Initializable {
     }
     
     public void btnParticiparClick() throws EventoExcecao, Exception{
-        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-        Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
-        Participa objPart = new Participa((int)userLogado.getId(), selected.getId());
-        
-        ParticipaDAO pDao = new ParticipaDAO();
-        if (pDao.insere(objPart)) {
+            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        try {
+            Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
+            Participa objPart = new Participa((int)userLogado.getId(), selected.getId());
+
+            ParticipaDAO pDao = new ParticipaDAO();
+            pDao.insere(objPart);
             SceneManager.getInstance().alertMsg("Sucesso", "Você agora esta participando deste evento", userLogado.getNome() + " esta participando de " + selected.getNome(), Alert.AlertType.INFORMATION);
             popularTela();
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Erro ao participar", "Não foi pasrticipar deste evento", Alert.AlertType.ERROR);
+
+        } catch(Exception e) {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro ao participar", e.getMessage(), Alert.AlertType.ERROR);
         }
-        
     }
 }

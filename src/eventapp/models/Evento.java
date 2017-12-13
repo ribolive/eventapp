@@ -117,7 +117,10 @@ public class Evento {
         this.local = local;
     }
 
-    public int getId() {
+    public int getId() throws EventoExcecao {
+        if(this.id < 1){
+            throw new EventoExcecao("Id não valido");
+        }
         return id;
     }
 

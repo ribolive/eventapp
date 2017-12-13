@@ -1,6 +1,7 @@
 package eventapp.controllers;
 
 import eventapp.excecoes.ErroLoginException;
+import eventapp.excecoes.sqlExcecao;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javafx.scene.control.Alert;
 
@@ -34,6 +36,7 @@ public class Controller_Login implements Initializable {
     private PasswordField txPass;  
     
     @FXML
+    
     private void getSceneRegister() {
         SceneManager sm = SceneManager.getInstance();
         Scene cena = sm.loadScene("Scene_UserRegister");
@@ -47,7 +50,7 @@ public class Controller_Login implements Initializable {
         SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
 
-    public void logar() throws SQLException{
+    public void logar() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao{
         Seguranca chave = Seguranca.getInstance();
         try {
             chave.logar(this.txUser.getText(), this.txPass.getText());

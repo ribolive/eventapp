@@ -88,19 +88,17 @@ public class Controller_Main implements Initializable {
         //puxando dados para construção da tabela
         EventoDAO evDao = new EventoDAO();
         ArrayList<Evento> lista = evDao.buscarPorData(data);
-        if (lista != null) {
-            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
-            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
-            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
-            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
-            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
-            
-            this.tableViewEvents.setItems(FXCollections.observableArrayList(lista));
-        } else {
-            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        }     
+        
+        this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+        this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+        this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+        this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+
+        this.tableViewEvents.setItems(FXCollections.observableArrayList(lista));
+
     }
     
     public void setScene_Events(){

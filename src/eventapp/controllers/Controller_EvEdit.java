@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
  *
  * @author Gabriel_Note
  */
-public class Controller_EventEdit implements Initializable {
+public class Controller_EvEdit implements Initializable {
 
     @FXML
     private TextField txNome;

@@ -6,11 +6,14 @@
 package eventapp.controllers;
 
 import eventapp.DAO.EventoDAO;
+import eventapp.excecoes.EventoExcecao;
+import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.models.Usuario;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +46,7 @@ public class Controller_EventRegister implements Initializable {
         SceneManager.getInstance().getPrimaryStage().setResizable(false);
     }    
     
-    public void btnCadastrarClick(){
+    public void btnCadastrarClick() throws Exception {
         try{
             Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
     //        System.out.println(userLogado.getId());   Retorna o ide do usuario logado

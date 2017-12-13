@@ -1,5 +1,8 @@
 package eventapp.models;
 
+import eventapp.excecoes.EventoExcecao;
+
+
 public class Participa {
     
     private int idUsuario;
@@ -7,7 +10,11 @@ public class Participa {
     private int avaliacao;
     private String comentario;
 
-    public Participa(int idUsuario, int idEvento) {
+    public Participa(int idUsuario, int idEvento) throws Exception {
+       
+        if(idUsuario < 1 || idEvento < 1) {
+            throw new EventoExcecao("Selecione um evento!");
+        }
         this.idUsuario = idUsuario;
         this.idEvento = idEvento;
         this.avaliacao = -1;
