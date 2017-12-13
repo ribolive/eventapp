@@ -11,6 +11,7 @@ import eventapp.models.Usuario;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,11 +40,17 @@ public class Controller_EventEdit implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        preencheTela();
     }    
     
-    public void btnEditarOnClick(){
-        
+    public void preencheTela(){
+        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        Evento evAtual = Controller_EdicaoEvento.getInstance().getObjEvento();
+        txNome.setText(evAtual.getNome());
+        txLocal.setText(evAtual.getLocal());
+        dpDataIni.setValue(LocalDate.parse(evAtual.getDataInicio().toString()));
+        dpDataFim.setValue(LocalDate.parse(evAtual.getDataFim().toString()));
+        txDescricao.setText(evAtual.getDescricao());
     }
     
     public void btnCancelarOnClick(){

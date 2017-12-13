@@ -13,7 +13,9 @@ import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -130,8 +132,9 @@ public class Controller_MyEvents implements Initializable {
     
     public void btnEditarOnCLick(){
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        Controller_EdicaoEvento.getInstance().setObjEvento(selected);
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_EventRegister");
+        Scene cena = sm.loadScene("Scene_EvEdit");
         //Inicia a cena de eventos (como primaria)
         sm.setSecondaryScene(cena); 
     }
