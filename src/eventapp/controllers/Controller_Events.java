@@ -6,9 +6,13 @@
 package eventapp.controllers;
 
 import eventapp.DAO.EventoDAO;
+import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
 import eventapp.models.Evento;
+import eventapp.models.Participa;
+import eventapp.models.Usuario;
 import eventapp.util.SceneManager;
+import eventapp.util.Seguranca;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,6 +20,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -73,7 +79,12 @@ public class Controller_Events implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        try {
+            SceneManager.getInstance().getPrimaryStage().setResizable(false);
+            popularTela();
+        } catch (Exception ex) {
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+        }
     }   
     
     public void setScene_Main(){
@@ -82,6 +93,28 @@ public class Controller_Events implements Initializable {
         //Inicia a cena de eventos (como primaria)
         sm.setPrimaryScene(cena);  
     }
+    
+    public void popularTela() throws EventoExcecao, Exception{
+        EventoDAO evDao = new EventoDAO();
+        ArrayList<Evento> lista = evDao.buscarEvetosQueNaoParticipo((int) Seguranca.getInstance().getUsuarioLogado().getId());
+//        for(Evento dado: lista){
+//            dado.imprimeEvento();
+//        }
+        if (lista != null) {
+            this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
+            this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
+            this.dataFim_evento.setCellValueFactory(new PropertyValueFactory<>("dataFim"));
+            this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
+            this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
+            
+            this.tvEvents.setItems(FXCollections.observableArrayList(lista));
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
+        }    
+    }
+    
     
     public void buscarEventosPorData() throws Exception{
         //  estabelecendo um formato para data a ser passada ao banco
@@ -94,7 +127,7 @@ public class Controller_Events implements Initializable {
             data = null;
         }
         EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarPorData(data);
+        ArrayList<Evento> lista = evDao.buscarPorDataNaoParticipo((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
         if (lista != null) {
             this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -112,7 +145,7 @@ public class Controller_Events implements Initializable {
     
     public void buscarEventosPorNome() throws EventoExcecao, Exception{
         EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarPorNome(txNome.getText());
+        ArrayList<Evento> lista = evDao.buscarPorNomeNaoParticipo((int) Seguranca.getInstance().getUsuarioLogado().getId(), txNome.getText());
 //        for(Evento dado: lista){
 //            dado.imprimeEvento();
 //        }
@@ -132,13 +165,13 @@ public class Controller_Events implements Initializable {
     }
 
     
-    public void deletar() {
+    public void deletar() throws Exception {
         EventoDAO evDao = new EventoDAO();
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
 //        selected.imprimeEvento();
         if (evDao.deletar(selected)) {
             SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-            tvEvents.getSelectionModel().selectedItemProperty().removeListener((InvalidationListener) selected);
+            buscarEventosPorNome();
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", "Não foi possivel deletar o evento", Alert.AlertType.ERROR);
         }
@@ -149,5 +182,20 @@ public class Controller_Events implements Initializable {
         Scene cena = sm.loadScene("Scene_EventRegister");
         //Inicia a cena de eventos (como primaria)
         sm.setSecondaryScene(cena); 
+    }
+    
+    public void btnParticiparClick() throws EventoExcecao, Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
+        Participa objPart = new Participa((int)userLogado.getId(), selected.getId());
+        
+        ParticipaDAO pDao = new ParticipaDAO();
+        if (pDao.insere(objPart)) {
+            SceneManager.getInstance().alertMsg("Sucesso", "Você agora esta participando deste evento", userLogado.getNome() + " esta participando de " + selected.getNome(), Alert.AlertType.INFORMATION);
+            popularTela();
+        } else {
+            SceneManager.getInstance().alertMsg("ERRO", "Erro ao participar", "Não foi pasrticipar deste evento", Alert.AlertType.ERROR);
+        }
+        
     }
 }

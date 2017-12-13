@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ParticipaDAO {
     
 //    Insere uma nova participação no banco de dados
-    public Participa insere(Participa participa){
+    public boolean insere(Participa participa){
         String sql = "INSERT into participa VALUES(?,?,?,?)";
         PreparedStatement ps;
         try{
@@ -25,11 +25,10 @@ public class ParticipaDAO {
             ps.setString(4,participa.getComentario());
             ps.executeUpdate();
             Conn.fecharConexao();
-            System.out.println("Participação guardada!");
-            return null;
+            return true;
         } catch (Exception ex) {
             System.err.println(ex);
-            return null;
+            return false;
         }
     }
     
