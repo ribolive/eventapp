@@ -21,7 +21,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button fx:id="btnPesqNome" layoutX="247.0" layoutY="29.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Nome" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                  <Button fx:id="btnPesqNome" layoutX="247.0" layoutY="29.0" mnemonicParsing="false" onAction="#buscarEventosPorNome" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Nome" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -37,7 +37,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="txPesqData" layoutX="629.0" layoutY="29.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Data" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                  <Button fx:id="txPesqData" layoutX="629.0" layoutY="29.0" mnemonicParsing="false" onAction="#buscarEventosPorData" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Data" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                      <font>
                         <Font size="11.0" />
                      </font>
