@@ -6,6 +6,7 @@ import eventapp.DAO.UsuarioDAO;
 import eventapp.excecoes.ErroLoginException;
 import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Usuario;
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -36,7 +37,7 @@ public class Seguranca {
         return texto;
     }
 
-    public void logar(String login, String senha) throws ErroLoginException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao {
+    public void logar(String login, String senha) throws ErroLoginException, SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao, IOException {
         UsuarioDAO dao = new UsuarioDAO();
         this.usuario = dao.select(login, senha);
 
