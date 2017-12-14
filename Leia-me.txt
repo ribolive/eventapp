@@ -1,1 +1,5 @@
-Antes de executar o codigo configure o usuario e a senha do banco de dados (mySql-server) no arquivo "config_dc.json"
+	----- Antes de executar o codigo -----
+
+- Configure o usuario e a senha do banco de dados (mySql-server) no arquivo "config_dc.json"
+
+- Apos a configuração, rode o Script para a criação do Esquema de nosso projeto, que se encontra em "evolutions/script.sql"

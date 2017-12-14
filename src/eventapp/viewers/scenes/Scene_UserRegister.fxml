@@ -12,21 +12,35 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="416.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eventapp.controllers.Controller_UserRegister">
    <children>
-      <Pane prefHeight="54.0" prefWidth="416.0" style="-fx-background-color: FFAE68; -fx-border-color: 848975;">
+      <Pane prefHeight="54.0" prefWidth="416.0" style="-fx-background-color: FFAE68; -fx-border-color: 848975;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label contentDisplay="CENTER" layoutX="149.0" layoutY="1.0" prefHeight="52.0" prefWidth="119.0" text="Novo Usuário" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../recursos/eta_icon200.png" />
-               </image>
-            </ImageView>
+            <GridPane prefHeight="52.0" prefWidth="416.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="165.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="251.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../recursos/eta_icon200.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Label contentDisplay="CENTER" layoutX="149.0" layoutY="1.0" prefHeight="52.0" prefWidth="119.0" text="Novo Usuário" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
          </children>
       </Pane>
-      <Pane layoutY="54.0" prefHeight="353.0" prefWidth="416.0">
+      <Pane layoutY="54.0" prefHeight="353.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <ImageView disable="true" fitHeight="344.0" fitWidth="406.0" layoutX="36.0" layoutY="5.0" opacity="0.15" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -69,8 +83,8 @@
                   <TextField fx:id="txName" layoutX="15.0" layoutY="-10.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0" />
                   <TextField fx:id="txUser" layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
                   <TextField fx:id="txEmail" layoutX="15.0" layoutY="108.0" prefHeight="25.0" prefWidth="255.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="108.0" />
-                  <PasswordField fx:id="txConfirmPass" layoutX="15.0" layoutY="225.0" prefWidth="255.0" />
                   <PasswordField fx:id="txPass" layoutX="15.0" layoutY="165.0" prefWidth="255.0" />
+                  <PasswordField fx:id="txConfirmPass" layoutX="15.0" layoutY="225.0" prefWidth="255.0" />
                </children>
             </AnchorPane>
          </children>
