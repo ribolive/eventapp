@@ -155,16 +155,17 @@ public class Controller_MyEvents implements Initializable {
     }
     
      public void buscarEventosPorData() throws Exception{
-        java.sql.Date data;
-        if (dpData.getValue() != null) {         
-            //  puxando dados para construção da tabela
-            data = java.sql.Date.valueOf(dpData.getValue());
-        } else {
-            data = null;
-        }
-        EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarMeusPorData((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
-        if (lista != null) {
+        try{
+            java.sql.Date data;
+            if (dpData.getValue() != null) {         
+                //  puxando dados para construção da tabela
+                data = java.sql.Date.valueOf(dpData.getValue());
+            } else {
+                data = null;
+            }
+            EventoDAO evDao = new EventoDAO();
+            ArrayList<Evento> lista = evDao.buscarMeusPorData((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
+            
             this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
@@ -172,17 +173,18 @@ public class Controller_MyEvents implements Initializable {
             this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
             this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
             this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
-            
+
             this.tvEvents.setItems(FXCollections.observableArrayList(lista));
-        } else {
+        } catch (Exception e){
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        }     
+        }
+       
     }
     
     public void buscarEventosPorNome() throws EventoExcecao, Exception{
-        EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarMeusPorNome((int) Seguranca.getInstance().getUsuarioLogado().getId(), txNome.getText());
-        if (lista != null) {
+        try{
+            EventoDAO evDao = new EventoDAO();
+            ArrayList<Evento> lista = evDao.buscarMeusPorNome((int) Seguranca.getInstance().getUsuarioLogado().getId(), txNome.getText());
             this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
             this.dataIni_evento.setCellValueFactory(new PropertyValueFactory<>("dataInicio"));
@@ -190,10 +192,10 @@ public class Controller_MyEvents implements Initializable {
             this.descricao_evento.setCellValueFactory(new PropertyValueFactory<>("descricao"));
             this.local_evento.setCellValueFactory(new PropertyValueFactory<>("local"));
             this.responsavel_evento.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
-            
+
             this.tvEvents.setItems(FXCollections.observableArrayList(lista));
-        } else {
+        }catch(Exception e){
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        } 
+        }
     }
 }

@@ -79,7 +79,6 @@ public class Controller_Events implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            SceneManager.getInstance().getPrimaryStage().setResizable(false);
             popularTela();
         } catch (Exception ex) {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);

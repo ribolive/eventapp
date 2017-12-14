@@ -41,13 +41,10 @@ public class Controller_Login implements Initializable {
         SceneManager sm = SceneManager.getInstance();
         Scene cena = sm.loadScene("Scene_UserRegister");
         sm.setSecondaryScene(cena);
-        //sm.getPrimaryStage().setMaximized(true);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SceneManager.getInstance().getPrimaryStage().setResizable(true);
-        SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
 
     public void logar() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao{
