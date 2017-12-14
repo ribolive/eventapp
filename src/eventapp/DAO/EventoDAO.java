@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import eventapp.models.Evento;
 import eventapp.util.Conn;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import java.util.Date;
 
 public class EventoDAO {
     
-    public void insere(Evento evento) throws ClassNotFoundException, SQLException, sqlExcecao{
+    public void insere(Evento evento) throws ClassNotFoundException, SQLException, sqlExcecao, IOException{
         //String nome, String descricao, String dataInicio, String dataFim, int idUsuario, String local
         String sql = "INSERT into evento (nome,descricao,data_inicio,data_fim,id_criador,local_evento) VALUES(?,?,?,?,?,?)";
         PreparedStatement ps;
@@ -52,11 +53,11 @@ public class EventoDAO {
             return null;
         }
     }
-    public void deletar(Evento objEv) throws SQLException, EventoExcecao, ClassNotFoundException, sqlExcecao{
+    public void deletar(Evento objEv) throws SQLException, EventoExcecao, ClassNotFoundException, sqlExcecao, IOException{
         this.deletar(objEv.getId());
     }
     
-    public void deletar(int id) throws SQLException, ClassNotFoundException, EventoExcecao, sqlExcecao {
+    public void deletar(int id) throws SQLException, ClassNotFoundException, EventoExcecao, sqlExcecao, IOException {
         String sql = "DELETE FROM evento WHERE id = " + id;
         PreparedStatement stmt = Conn.conectar().prepareStatement(sql);
         if (stmt.executeUpdate() != 0) {
@@ -66,7 +67,7 @@ public class EventoDAO {
         }
     }
     
-    public void atualizar(Evento evento) throws SQLException, ClassNotFoundException, sqlExcecao, EventoExcecao {
+    public void atualizar(Evento evento) throws SQLException, ClassNotFoundException, sqlExcecao, EventoExcecao, IOException {
         String sql = "UPDATE evento SET nome = ?, descricao = ?, data_inicio = ?, data_fim = ?,id_criador = ?, local_evento = ? WHERE id = ?";
 
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);

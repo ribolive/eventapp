@@ -8,6 +8,7 @@ import eventapp.models.Participa;
 import eventapp.models.Usuario;
 import eventapp.models.Evento;
 import eventapp.util.Conn;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class ParticipaDAO {
     
 //    Insere uma nova participação no banco de dados
-    public void insere(Participa participa) throws SQLException, ClassNotFoundException, sqlExcecao{
+    public void insere(Participa participa) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
         String sql = "INSERT into participa VALUES(?,?,?,?)";
         PreparedStatement ps;
         ps = Conn.conectar().prepareStatement(sql);
@@ -28,7 +29,7 @@ public class ParticipaDAO {
     }
     
     // Insere uma nova nota no banco de dados
-    public void insereAvaliacao(int idUsuario, int idEvento, int avaliacao) throws SQLException, ClassNotFoundException, sqlExcecao{
+    public void insereAvaliacao(int idUsuario, int idEvento, int avaliacao) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
         String sql = "UPDATE participa SET avaliacao = ? WHERE id_usuario = ? and id_evento = ?";
         PreparedStatement ps;
         ps = Conn.conectar().prepareStatement(sql);
@@ -41,7 +42,7 @@ public class ParticipaDAO {
     }
     
     // Insere um novo comentário no banco de dados
-    public void insereComentario(int idUsuario, int idEvento, String comentario) throws SQLException, ClassNotFoundException, sqlExcecao{
+    public void insereComentario(int idUsuario, int idEvento, String comentario) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
         String sql = "UPDATE participa SET comentario = ? WHERE id_usuario = ? and id_evento = ?";
         PreparedStatement ps;
         ps = Conn.conectar().prepareStatement(sql);
@@ -54,7 +55,7 @@ public class ParticipaDAO {
     }
     
     // Retorna a avaliação média do evento
-    public double notaMedia(int idEvento) throws SQLException, ClassNotFoundException, sqlExcecao{
+    public double notaMedia(int idEvento) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
         String sql = "SELECT AVG(avaliacao)from participa where id_evento = ?";
         PreparedStatement ps;
         ps = Conn.conectar().prepareStatement(sql);
@@ -66,7 +67,7 @@ public class ParticipaDAO {
     }
     
     // Retorna uma lista de usuários que está cadastrado no evento
-    public ArrayList<Usuario> listaCadastrados(int idEvento) throws SQLException, ClassNotFoundException, sqlExcecao{
+    public ArrayList<Usuario> listaCadastrados(int idEvento) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
         String sql = "SELECT usuario.nome, usuario.usuario, usuario.email FROM usuario INNER JOIN participa ON usuario.id = participa.id_usuario where participa.id_evento = ?";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);
         ps.setInt(1, idEvento);
@@ -96,7 +97,7 @@ public class ParticipaDAO {
     }   
     
     // excluindo participação do usuario
-    public void deletar(int idUsuario, int idEvento) throws sqlExcecao, SQLException, ClassNotFoundException{
+    public void deletar(int idUsuario, int idEvento) throws sqlExcecao, SQLException, ClassNotFoundException, IOException{
         String sql = "DELETE FROM participa WHERE id_usuario = ? and id_evento = ?";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);
         ps.setInt(1, idUsuario);

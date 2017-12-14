@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javafx.scene.control.Alert;
@@ -47,7 +48,7 @@ public class Controller_Login implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
-    public void logar() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao{
+    public void logar() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao, IOException{
         Seguranca chave = Seguranca.getInstance();
         try {
             chave.logar(this.txUser.getText(), this.txPass.getText());
