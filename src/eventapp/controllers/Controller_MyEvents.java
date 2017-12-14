@@ -163,7 +163,8 @@ public class Controller_MyEvents implements Initializable {
             data = null;
         }
         EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarMeusPorData((int) Seguranca.getInstance().getUsuarioLogado().getId(), data);
+        int idUs = (int) Seguranca.getInstance().getUsuarioLogado().getId();
+        ArrayList<Evento> lista = evDao.buscarMeusPorData(idUs, data);
         if (lista != null) {
             this.id_evento.setCellValueFactory(new PropertyValueFactory<>("id"));
             this.nome_evento.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -176,8 +177,7 @@ public class Controller_MyEvents implements Initializable {
             this.tvEvents.setItems(FXCollections.observableArrayList(lista));
         } else {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
-        }
-       
+        } 
     }
     
     public void buscarEventosPorNome() throws EventoExcecao, Exception{

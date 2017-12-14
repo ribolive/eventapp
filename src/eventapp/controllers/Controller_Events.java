@@ -115,8 +115,6 @@ public class Controller_Events implements Initializable {
     
     
     public void buscarEventosPorData() throws Exception{
-        //  estabelecendo um formato para data a ser passada ao banco
-//        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         java.sql.Date data;
         if (dpData.getValue() != null) {         
             //  puxando dados para construção da tabela

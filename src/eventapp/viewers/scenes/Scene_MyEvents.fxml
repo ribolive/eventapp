@@ -37,14 +37,6 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="txPesqData" layoutX="629.0" layoutY="29.0" mnemonicParsing="false" onAction="#buscarEventosPorData" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Data" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
-                  </Button>
                   <DatePicker fx:id="dpData" layoutX="380.0" layoutY="46.0" maxWidth="200.0" minWidth="20.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="20.0" />
@@ -58,6 +50,14 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
+                  <Button fx:id="btnPesqData" mnemonicParsing="false" onAction="#buscarEventosPorData" prefHeight="40.0" prefWidth="120.0" text="Pesquisar por Data" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="229.0" />

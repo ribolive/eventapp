@@ -38,7 +38,6 @@ public class ParticipaDAO {
         ps.setInt(3,idEvento);
         ps.executeUpdate();
         Conn.fecharConexao();
-        System.out.println("Avaliacao guardada!");
     }
     
     // Insere um novo comentário no banco de dados
@@ -51,7 +50,6 @@ public class ParticipaDAO {
         ps.setInt(3,idEvento);
         ps.executeUpdate();
         Conn.fecharConexao();
-        System.out.println("comentario guardado!");
     }
     
     // Retorna a avaliação média do evento
@@ -112,11 +110,9 @@ public class ParticipaDAO {
         String sql = "DELETE FROM participa WHERE id_evento = ?";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);
         ps.setInt(1, idEvento);
-        System.out.println("ola");
         if(ps.executeUpdate() != 0) {
             throw new sqlExcecao("Não foi possivel deletar participação");
         }
-        System.out.println(" mundo");
         Conn.fecharConexao();
     }  
 }

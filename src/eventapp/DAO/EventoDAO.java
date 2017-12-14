@@ -224,7 +224,7 @@ public class EventoDAO {
     public ArrayList<Evento> buscarMeusPorData(int userId, java.sql.Date DataAtual) throws Exception {
         String sql = "SELECT id, nome, descricao, data_inicio, data_fim, id_criador, local_evento "
                    + "FROM evento "+
-                     "where id_criador = ?";
+                     "where id_criador = ? ";
         if(DataAtual != null){
                sql += "and data_inicio <= '"+DataAtual+"' AND "
                     + "data_fim >= '"+DataAtual+"' ";

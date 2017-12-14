@@ -49,7 +49,6 @@ public class Controller_EventRegister implements Initializable {
     public void btnCadastrarClick() throws Exception {
         try{
             Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
-    //        System.out.println(userLogado.getId());   Retorna o ide do usuario logado
 
             Evento newEvent = new Evento(   this.txNome.getText(),
                                             this.txDescricao.getText(),

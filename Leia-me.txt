@@ -1,0 +1,1 @@
+Antes de executar o codigo configure o usuario e a senha do banco de dados (mySql-server) no arquivo "config_dc.json"
