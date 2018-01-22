@@ -162,19 +162,23 @@ public class Controller_Events implements Initializable {
 
     
     public void deletar() throws Exception {
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         try{
-            boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
-                                                                  "Ao deletar o evento, todas informações dele serão perdidas...",
-                                                                  "Deseja mesmo deletar o evento?");
-            if(confirm){
-                SceneManager.getInstance().getSecondaryStage().close();
+            if(selected != null){
+                boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                                      "Ao deletar o evento, todas informações dele serão perdidas...",
+                                                                      "Deseja mesmo deletar o evento?");
+                if(confirm){
+                    EventoDAO evDao = new EventoDAO();
+
+            //        selected.imprimeEvento();
+                    evDao.deletar(selected);
+                    SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+                    buscarEventosPorNome();
+                }
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
             }
-            EventoDAO evDao = new EventoDAO();
-            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-    //        selected.imprimeEvento();
-            evDao.deletar(selected);
-            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-            buscarEventosPorNome();
         } catch (Exception e) {
             SceneManager.getInstance().alertMsg("ERRO", "Erro na remoção", e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -190,13 +194,17 @@ public class Controller_Events implements Initializable {
     public void btnParticiparClick() throws EventoExcecao, Exception{
             Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         try {
-            Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
-            Participa objPart = new Participa((int)userLogado.getId(), selected.getId());
+            if(selected != null){
+                Usuario userLogado = Seguranca.getInstance().getUsuarioLogado();
+                Participa objPart = new Participa((int)userLogado.getId(), selected.getId());
 
-            ParticipaDAO pDao = new ParticipaDAO();
-            pDao.insere(objPart);
-            SceneManager.getInstance().alertMsg("Sucesso", "Você agora esta participando deste evento", userLogado.getNome() + " esta participando de " + selected.getNome(), Alert.AlertType.INFORMATION);
-            popularTela();
+                ParticipaDAO pDao = new ParticipaDAO();
+                pDao.insere(objPart);
+                SceneManager.getInstance().alertMsg("Sucesso", "Você agora esta participando deste evento", userLogado.getNome() + " esta participando de " + selected.getNome(), Alert.AlertType.INFORMATION);
+                popularTela();
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+            }
 
         } catch(Exception e) {
             SceneManager.getInstance().alertMsg("ERRO", "Erro ao participar", e.getMessage(), Alert.AlertType.ERROR);

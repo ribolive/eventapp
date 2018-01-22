@@ -107,12 +107,16 @@ public class Controller_MyEvents implements Initializable {
     }
     
     public void btnNotParticiparOnClick() throws sqlExcecao, SQLException, ClassNotFoundException, Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         try {
-            ParticipaDAO partDao = new ParticipaDAO();
-            Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
-            partDao.deletar((int)selected.getIdUsuario(), (int)selected.getId());
-            SceneManager.getInstance().alertMsg("Sucesso", "Você deixou um evento", "Agora voce não esta mais participando do evento "+selected.getNome(), Alert.AlertType.INFORMATION);
-            popularTela();
+            if(selected != null){
+                ParticipaDAO partDao = new ParticipaDAO();
+                partDao.deletar((int)selected.getIdUsuario(), (int)selected.getId());
+                SceneManager.getInstance().alertMsg("Sucesso", "Você deixou um evento", "Agora voce não esta mais participando do evento "+selected.getNome(), Alert.AlertType.INFORMATION);
+                popularTela();
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel participar", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+            }             
         } catch (Exception e){
             SceneManager.getInstance().alertMsg("ERRO", "Erro ao deixar evento", e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -123,14 +127,19 @@ public class Controller_MyEvents implements Initializable {
         int id = selected.getId();
         try{
             if(selected != null){
-                EventoDAO evDao = new EventoDAO();
-                ParticipaDAO partDao = new ParticipaDAO();
-                partDao.deletar(id);
-                evDao.deletar(selected);
-                SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-                popularTela();
+                boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                                      "Ao deletar o evento, todas informações dele serão perdidas...",
+                                                                      "Deseja mesmo deletar o evento?");
+                if(confirm){
+                    EventoDAO evDao = new EventoDAO();
+                    ParticipaDAO partDao = new ParticipaDAO();
+                    partDao.deletar(id);
+                    evDao.deletar(selected);
+                    SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+                    popularTela();
+                }
             } else {
-                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
             SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", e.getMessage(), Alert.AlertType.ERROR);
