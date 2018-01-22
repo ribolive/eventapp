@@ -122,12 +122,16 @@ public class Controller_MyEvents implements Initializable {
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         int id = selected.getId();
         try{
-            EventoDAO evDao = new EventoDAO();
-            ParticipaDAO partDao = new ParticipaDAO();
-            partDao.deletar(id);
-            evDao.deletar(selected);
-            SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
-            popularTela();
+            if(selected != null){
+                EventoDAO evDao = new EventoDAO();
+                ParticipaDAO partDao = new ParticipaDAO();
+                partDao.deletar(id);
+                evDao.deletar(selected);
+                SceneManager.getInstance().alertMsg("Sucesso", "Remoção concluida", selected.getNome() + " deletado com sucesso", Alert.AlertType.INFORMATION);
+                popularTela();
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+            }
         } catch (Exception e) {
             SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel deletar o evento", e.getMessage(), Alert.AlertType.ERROR);
         }

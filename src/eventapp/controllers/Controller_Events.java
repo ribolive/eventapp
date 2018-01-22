@@ -163,6 +163,12 @@ public class Controller_Events implements Initializable {
     
     public void deletar() throws Exception {
         try{
+            boolean confirm = SceneManager.getInstance().alertMsg("Confirmação",
+                                                                  "Ao deletar o evento, todas informações dele serão perdidas...",
+                                                                  "Deseja mesmo deletar o evento?");
+            if(confirm){
+                SceneManager.getInstance().getSecondaryStage().close();
+            }
             EventoDAO evDao = new EventoDAO();
             Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
     //        selected.imprimeEvento();
