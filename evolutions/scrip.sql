@@ -5,7 +5,7 @@ USE eventapp;
 create table usuario (
 		id Int not null AUTO_INCREMENT,
 		nome Varchar(50) not null,
-		usuario Varchar(30) not null unique
+		usuario Varchar(30) not null unique,
 		email Varchar(50) not null,
 		senha Varchar(255) not null,
         PRIMARY KEY (id)
@@ -14,14 +14,14 @@ create table usuario (
 -- Criando a tabela "evento" --
 create table evento (
 		id int not null AUTO_INCREMENT,
-		nome varchar(50) not null,
+		nome varchar(50) not null unique,
 		descricao Varchar(200) not null,
         data_inicio Varchar(15) not null,
         data_fim Varchar(15) not null,
         id_criador int not null,
         local_evento varchar(100) not null,
         PRIMARY KEY (id),
-        FOREIGN KEY (id) REFERENCES usuario(id)
+        FOREIGN KEY (id_criador) REFERENCES usuario(id)
 );
   
 -- Criando a tabela "participa" --      
