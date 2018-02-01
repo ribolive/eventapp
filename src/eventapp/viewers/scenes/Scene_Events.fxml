@@ -111,10 +111,10 @@
                   <TableView fx:id="tvEvents" layoutX="7.0" layoutY="8.0" prefHeight="465.0" prefWidth="627.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="8.0">
                      <columns>
                         <TableColumn fx:id="id_evento" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="35.0" text="Id" visible="false" />
-                        <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="150.0" text="Nome" />
-                        <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="90.0" text="data_inicio" />
-                        <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="90.0" text="Data de termino" />
-                        <TableColumn fx:id="local_evento" minWidth="-1.0" prefWidth="150.0" text="Local" />
+                        <TableColumn fx:id="nome_evento" minWidth="-1.0" prefWidth="131.0" text="Nome" />
+                        <TableColumn fx:id="dataIni_evento" minWidth="-1.0" prefWidth="109.0" text="Data de Inicio" />
+                        <TableColumn fx:id="dataFim_evento" minWidth="-1.0" prefWidth="116.0" text="Data de termino" />
+                        <TableColumn fx:id="local_evento" minWidth="-1.0" prefWidth="124.0" text="Local" />
                         <TableColumn fx:id="responsavel_evento" minWidth="-1.0" prefWidth="150.0" text="Id Responsavel" />
                         <TableColumn fx:id="descricao_evento" minWidth="-1.0" prefWidth="200.0" text="Descrição" />
                      </columns>

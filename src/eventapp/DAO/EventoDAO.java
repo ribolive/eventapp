@@ -106,7 +106,7 @@ public class EventoDAO {
     }
 //    SELECT e.* FROM evento as e
 //    where e.id not in (select id_evento from participa where id_usuario = 4);
-    public ArrayList<Evento> buscarEvetosQueNaoParticipo(int userId) throws SQLException, EventoExcecao, Exception {
+    public ArrayList<Evento> buscarEventosQueNaoParticipo(int userId) throws SQLException, EventoExcecao, Exception {
         String sql =    "SELECT id, nome,descricao,data_inicio,data_fim,id_criador,local_evento "+
                         "FROM evento where id not in (select id_evento from participa where id_usuario = ?)";
         PreparedStatement ps = Conn.conectar().prepareStatement(sql);

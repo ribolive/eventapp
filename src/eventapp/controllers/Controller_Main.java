@@ -64,7 +64,7 @@ public class Controller_Main implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        SceneManager.getInstance().getPrimaryStage().setResizable(true);
         SceneManager.getInstance().getPrimaryStage().centerOnScreen();
         try {
             buscarEventosDaSemana();

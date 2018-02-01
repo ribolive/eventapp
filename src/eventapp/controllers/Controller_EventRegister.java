@@ -43,7 +43,8 @@ public class Controller_EventRegister implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SceneManager.getInstance().getPrimaryStage().setResizable(false);
+        SceneManager.getInstance().getPrimaryStage().setResizable(true);
+        SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
     
     public void btnCadastrarClick() throws Exception {

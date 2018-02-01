@@ -79,12 +79,13 @@ public class Controller_Events implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            SceneManager.getInstance().getPrimaryStage().setResizable(true);
+            SceneManager.getInstance().getPrimaryStage().centerOnScreen();
             popularTela();
         } catch (Exception ex) {
             SceneManager.getInstance().alertMsg("ERRO", "Algo inesperado aconteceu", "Não foi possivel carregar os eventos", Alert.AlertType.ERROR);
         }
-    }   
-    
+    }       
     public void setScene_Main(){
         SceneManager sm = SceneManager.getInstance();
         Scene cena = sm.loadScene("Scene_Main");
@@ -94,7 +95,7 @@ public class Controller_Events implements Initializable {
     
     public void popularTela() throws EventoExcecao, Exception{
         EventoDAO evDao = new EventoDAO();
-        ArrayList<Evento> lista = evDao.buscarEvetosQueNaoParticipo((int) Seguranca.getInstance().getUsuarioLogado().getId());
+        ArrayList<Evento> lista = evDao.buscarEventosQueNaoParticipo((int) Seguranca.getInstance().getUsuarioLogado().getId());
 //        for(Evento dado: lista){
 //            dado.imprimeEvento();
 //        }
