@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="398.0" prefWidth="522.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="eventapp.controllers.Controle_visualizarEvento">
+   <children>
+      <AnchorPane layoutX="-4.0" layoutY="12.0" prefHeight="61.0" prefWidth="604.0" style="-fx-background-color: #FFC593; -fx-background-radius: 5; -fx-border-color: #FC7844; -fx-border-radius: 5;" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+         <children>
+            <GridPane layoutX="288.0" layoutY="27.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+               <children>
+                  <Label layoutX="288.0" layoutY="27.0" text="Informações do Evento" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="12.0" layoutY="78.0" prefHeight="338.0" prefWidth="518.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="65.0">
+         <children>
+            <GridPane layoutX="14.0" layoutY="9.0" prefHeight="266.0" prefWidth="514.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0">
+               <children>
+                  <Label text="Nome:" wrapText="true">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txNome" prefHeight="25.0" prefWidth="380.0" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Local" wrapText="true" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txLocal" prefHeight="25.0" prefWidth="284.0" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Descrição" wrapText="true" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextArea fx:id="txDescricao" prefHeight="60.0" prefWidth="474.0" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                     </GridPane.margin>
+                  </TextArea>
+                  <Label text="Data de inicio" wrapText="true" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <DatePicker fx:id="dpDataIni" prefHeight="25.0" prefWidth="216.0" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <Label text="Data de fim" wrapText="true" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <DatePicker fx:id="dpDataFim" prefHeight="25.0" prefWidth="216.0" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="277.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="28.0" minHeight="7.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <GridPane layoutX="44.0" layoutY="301.0" prefHeight="55.0" prefWidth="610.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0">
+         <children>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelarOnClick" prefHeight="25.0" prefWidth="73.0" text="Voltar" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="430.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

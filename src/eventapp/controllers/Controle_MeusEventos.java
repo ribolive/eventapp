@@ -164,6 +164,23 @@ public class Controle_MeusEventos implements Initializable {
         }
     }
     
+    public void btnVerOnCLick() throws Exception{
+        Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
+        try {
+            if (selected != null) {
+                Controle_singletonEdicaoEvento.getInstance().setObjEvento(selected);
+                SceneManager sm = SceneManager.getInstance();
+                Scene cena = sm.loadScene("Cena_VisualizarEvento");
+                //Inicia a cena de eventos (como primaria)
+                sm.setSecondaryScene(cena);
+            } else {
+                SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", "Verifique se um evento foi selecionado", Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            SceneManager.getInstance().alertMsg("ERRO", "Não foi possivel editar o evento", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+    
     public void btnAtualizaOnClick() throws Exception{
         popularTela();
     }
