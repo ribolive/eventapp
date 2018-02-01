@@ -41,7 +41,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Gabriel_Note
  */
-public class Controller_Events implements Initializable {
+public class Controle_Eventos implements Initializable {
 
     @FXML
     private TextField txNome;
@@ -88,7 +88,7 @@ public class Controller_Events implements Initializable {
     }       
     public void setScene_Main(){
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_Main");
+        Scene cena = sm.loadScene("Cena_Entrada");
         //Inicia a cena de eventos (como primaria)
         sm.setPrimaryScene(cena);  
     }
@@ -187,7 +187,7 @@ public class Controller_Events implements Initializable {
     
     public void btnCadastrarClick(){
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_EventRegister");
+        Scene cena = sm.loadScene("Cena_RegistraEvento");
         //Inicia a cena de eventos (como primaria)
         sm.setSecondaryScene(cena); 
     }

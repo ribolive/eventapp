@@ -13,7 +13,7 @@ import eventapp.DAO.UsuarioDAO;
 import eventapp.models.Usuario;
 import javafx.scene.control.PasswordField;
 
-public class Controller_UserRegister implements Initializable {
+public class Controle_RegistraUsuario implements Initializable {
 
     @FXML
     private Button btnCancelar;   

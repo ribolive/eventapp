@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
  *
  * @author Gabriel_Note
  */
-public class Controller_EvEdit implements Initializable {
+public class Controle_EditaEvento implements Initializable {
 
     @FXML
     private TextField txNome;
@@ -49,7 +49,7 @@ public class Controller_EvEdit implements Initializable {
     
     public void preencheTela(){
         SceneManager.getInstance().getPrimaryStage().setResizable(false);
-        Evento evAtual = Controller_EdicaoEvento.getInstance().getObjEvento();
+        Evento evAtual = Controle_singletonEdicaoEvento.getInstance().getObjEvento();
         txNome.setText(evAtual.getNome());
         txLocal.setText(evAtual.getLocal());
         dpDataIni.setValue(LocalDate.parse(evAtual.getDataInicio().toString()));
@@ -67,7 +67,7 @@ public class Controller_EvEdit implements Initializable {
     }
     
     public void btnEditarOnClick(){        
-        Evento evAtual = Controller_EdicaoEvento.getInstance().getObjEvento();
+        Evento evAtual = Controle_singletonEdicaoEvento.getInstance().getObjEvento();
         try{        
             Evento newEvent = new Evento(   evAtual.getId(),
                                             this.txNome.getText(),

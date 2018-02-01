@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javafx.scene.control.Alert;
 
-public class Controller_Login implements Initializable {
+public class Controle_Login implements Initializable {
 
     @FXML
     private Button btnLogin;
@@ -40,7 +40,7 @@ public class Controller_Login implements Initializable {
     
     private void getSceneRegister() {
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_UserRegister");
+        Scene cena = sm.loadScene("Cena_RegistraUsuario");
         sm.setSecondaryScene(cena);
     }
     
@@ -53,7 +53,7 @@ public class Controller_Login implements Initializable {
         try {
             chave.logar(this.txUser.getText(), this.txPass.getText());
             SceneManager sm = SceneManager.getInstance();
-            Scene cena2 = sm.loadScene("Scene_Main");
+            Scene cena2 = sm.loadScene("Cena_Entrada");
             //Inicia a cena principal
             sm.setPrimaryScene(cena2);
         } catch(ErroLoginException ex) {

@@ -29,7 +29,7 @@ public class EventApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Scene cena = SceneManager.getInstance().loadScene("Scene_Login");     
+        Scene cena = SceneManager.getInstance().loadScene("Cena_Login");     
         if (cena != null) {
             SceneManager.getInstance().getPrimaryStage().centerOnScreen();
             SceneManager.getInstance().getPrimaryStage().setResizable(true);

@@ -27,7 +27,7 @@ import javafx.scene.control.TextField;
  *
  * @author Gabriel_Note
  */
-public class Controller_EventRegister implements Initializable {
+public class Controle_RegistraEvento implements Initializable {
 
     
     @FXML

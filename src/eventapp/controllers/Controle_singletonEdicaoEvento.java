@@ -4,19 +4,19 @@ package eventapp.controllers;
 import eventapp.models.Evento;
 
 
-public class Controller_EdicaoEvento {
-    private static Controller_EdicaoEvento instance = null;
+public class Controle_singletonEdicaoEvento {
+    private static Controle_singletonEdicaoEvento instance = null;
     private Evento objEvento;
 
-    public Controller_EdicaoEvento() {
+    public Controle_singletonEdicaoEvento() {
         if (instance == null) {
             this.objEvento = null;
         }
     }
     
-    public static Controller_EdicaoEvento getInstance() {
+    public static Controle_singletonEdicaoEvento getInstance() {
         if (instance == null) {
-            instance = new Controller_EdicaoEvento();
+            instance = new Controle_singletonEdicaoEvento();
         }
         return instance;
     }

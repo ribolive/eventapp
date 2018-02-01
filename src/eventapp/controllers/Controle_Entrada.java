@@ -33,7 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Gabriel_Note
  */
-public class Controller_Main implements Initializable {
+public class Controle_Entrada implements Initializable {
 
     @FXML
     private Button btnEvents;
@@ -69,9 +69,9 @@ public class Controller_Main implements Initializable {
         try {
             buscarEventosDaSemana();
         } catch (ParseException ex) {
-            Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controle_Entrada.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(Controller_Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controle_Entrada.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
  
@@ -103,14 +103,14 @@ public class Controller_Main implements Initializable {
     
     public void setScene_Events(){
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_Events");
+        Scene cena = sm.loadScene("Cena_Eventos");
         //Inicia a cena de eventos (como primaria)
         sm.setPrimaryScene(cena);   
     }
     
     public void setScene_MyEvents(){
         SceneManager sm = SceneManager.getInstance();
-        Scene cena = sm.loadScene("Scene_MyEvents");
+        Scene cena = sm.loadScene("Cena_MeusEventos");
         //Inicia a cena de eventos (como primaria)
         sm.setPrimaryScene(cena);   
     }
@@ -123,7 +123,7 @@ public class Controller_Main implements Initializable {
             //SceneManager.getInstance().getPrimaryStage().close();
             //Voltando a tela de login
             SceneManager sManager = SceneManager.getInstance();
-            Scene cena = sManager.loadScene("Scene_Login");
+            Scene cena = sManager.loadScene("Cena_Login");
             if (cena != null) {
                 sManager.getSecondaryStage().centerOnScreen();
 //                sManager.getSecondaryStage().setResizable(true);
