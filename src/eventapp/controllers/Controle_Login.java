@@ -46,6 +46,12 @@ public class Controle_Login implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SceneManager.getInstance().getPrimaryStage().setMinWidth(670.0);
+        SceneManager.getInstance().getPrimaryStage().setMaxWidth(670.0);
+        SceneManager.getInstance().getPrimaryStage().setMinHeight(287.0);
+        SceneManager.getInstance().getPrimaryStage().setMaxHeight(287.0);
+        SceneManager.getInstance().getPrimaryStage().setResizable(false);    
+        SceneManager.getInstance().getPrimaryStage().centerOnScreen();
     }    
 
     public void logar() throws SQLException, ClassNotFoundException, NoSuchAlgorithmException, sqlExcecao, IOException{

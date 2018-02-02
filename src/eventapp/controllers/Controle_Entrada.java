@@ -64,6 +64,10 @@ public class Controle_Entrada implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        SceneManager.getInstance().getPrimaryStage().setMinWidth(830.0);
+        SceneManager.getInstance().getPrimaryStage().setMaxWidth(2560.0);
+        SceneManager.getInstance().getPrimaryStage().setMinHeight(630.0);
+        SceneManager.getInstance().getPrimaryStage().setMaxHeight(1350.0);
         SceneManager.getInstance().getPrimaryStage().setResizable(true);
         SceneManager.getInstance().getPrimaryStage().centerOnScreen();
         try {

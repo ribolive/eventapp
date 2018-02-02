@@ -32,7 +32,10 @@ public class EventApp extends Application {
         Scene cena = SceneManager.getInstance().loadScene("Cena_Login");     
         if (cena != null) {
             SceneManager.getInstance().getPrimaryStage().centerOnScreen();
-            SceneManager.getInstance().getPrimaryStage().setResizable(true);
+            SceneManager.getInstance().getPrimaryStage().setMinWidth(670.0);
+            SceneManager.getInstance().getPrimaryStage().setMaxWidth(670.0);
+            SceneManager.getInstance().getPrimaryStage().setMinHeight(287.0);
+            SceneManager.getInstance().getPrimaryStage().setMaxHeight(287.0);
             SceneManager.getInstance().setPrimaryScene(cena);
         }
     }
