@@ -7,7 +7,6 @@ package eventapp.controllers;
 
 import eventapp.DAO.EventoDAO;
 import eventapp.excecoes.EventoExcecao;
-import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.models.Usuario;
 import eventapp.util.SceneManager;
