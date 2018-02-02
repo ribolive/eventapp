@@ -15,7 +15,7 @@ import java.security.NoSuchAlgorithmException;
   
 public class UsuarioDAO {  
    
-    public void insere(Usuario usuario)throws Exception {
+    public void insere(Usuario usuario)throws Exception{
         String sql = "INSERT into usuario (nome, usuario, email, senha) VALUES(?,?,?,?)";
         PreparedStatement ps;
         ps = Conn.conectar().prepareStatement(sql);

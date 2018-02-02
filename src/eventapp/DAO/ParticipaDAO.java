@@ -1,6 +1,7 @@
 package eventapp.DAO;
 
 import eventapp.excecoes.sqlExcecao;
+import eventapp.models.Avaliacao;
 import java.sql.PreparedStatement;  
 import java.sql.ResultSet;  
 import java.sql.SQLException;
@@ -48,6 +49,18 @@ public class ParticipaDAO {
         ps.setString(1,comentario);
         ps.setInt(2,idUsuario);
         ps.setInt(3,idEvento);
+        ps.executeUpdate();
+        Conn.fecharConexao();
+    }
+    
+    public void insereComentarioEAvaliacao(int idUsuario, int idEvento, String comentario, int avaliacao) throws SQLException, ClassNotFoundException, sqlExcecao, IOException{
+        String sql = "UPDATE participa SET comentario = ?, avaliacao = ? WHERE id_usuario = ? and id_evento = ?";
+        PreparedStatement ps;
+        ps = Conn.conectar().prepareStatement(sql);
+        ps.setString(1,comentario);
+        ps.setInt(2, avaliacao);
+        ps.setInt(3,idUsuario);
+        ps.setInt(4,idEvento);
         ps.executeUpdate();
         Conn.fecharConexao();
     }
@@ -115,4 +128,24 @@ public class ParticipaDAO {
         }
         Conn.fecharConexao();
     }  
+    
+    //retorna lista dos comentários do evento e avaliações dos usuários
+    public ArrayList<Avaliacao> todosComentarios(int idEvento) throws Exception, sqlExcecao{
+        String sql = "SELECT idUsuario, nome, avaliacao, comentario"
+                + " FROM participa JOIN usuario on idUsuario = id "
+                + "WHERE id_evento = ?";
+        PreparedStatement ps = Conn.conectar().prepareStatement(sql);
+         ps.setInt(1, idEvento);
+        ResultSet rs = ps.executeQuery();
+        Conn.fecharConexao();
+        ArrayList<Avaliacao> avaliacoes = new ArrayList();
+        while (rs.next()) {
+            Avaliacao a = new Avaliacao(rs.getInt("idUsuario"), rs.getString("nome"), rs.getInt("nota"), rs.getString("comentario"));
+            avaliacoes.add(a);
+        }
+        return avaliacoes;
+    }  
+    
+    //retorna os dados do evento que o usuário está participando
+
 }
