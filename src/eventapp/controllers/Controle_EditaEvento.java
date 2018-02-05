@@ -7,9 +7,7 @@ package eventapp.controllers;
 
 import eventapp.DAO.EventoDAO;
 import eventapp.models.Evento;
-import eventapp.models.Usuario;
 import eventapp.util.SceneManager;
-import eventapp.util.Seguranca;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -18,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 

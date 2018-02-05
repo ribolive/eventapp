@@ -10,7 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import eventapp.DAO.UsuarioDAO;
+import eventapp.excecoes.UsuarioExcecao;
 import eventapp.models.Usuario;
+import java.sql.SQLException;
 import javafx.scene.control.PasswordField;
 
 public class Controle_RegistraUsuario implements Initializable {
@@ -55,8 +57,12 @@ public class Controle_RegistraUsuario implements Initializable {
             userDAO.insere(newUser);
             SceneManager.getInstance().alertMsg("Cadastro","Cadastrado!","permissão de autentificaçao concedida para "+this.txName.getText(), Alert.AlertType.INFORMATION);
             SceneManager.getInstance().getSecondaryStage().close();
-        } catch (Exception e){
+        } catch(UsuarioExcecao e) {
             SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar usuario!", e.getMessage(), Alert.AlertType.ERROR);
+        } catch(SQLException e) {
+            SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar usuario!", "Nome de usuário já existe!", Alert.AlertType.ERROR);
+        } catch (Exception e){
+            SceneManager.getInstance().alertMsg("Erro","Erro ao cadastrar usuario!", null, Alert.AlertType.ERROR);
         }
         
     }

@@ -8,7 +8,6 @@ package eventapp.controllers;
 import eventapp.DAO.EventoDAO;
 import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
-import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.models.Participa;
 import eventapp.models.Usuario;

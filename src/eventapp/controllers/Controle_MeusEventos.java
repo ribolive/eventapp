@@ -8,7 +8,6 @@ package eventapp.controllers;
 import eventapp.DAO.EventoDAO;
 import eventapp.DAO.ParticipaDAO;
 import eventapp.excecoes.EventoExcecao;
-import eventapp.excecoes.sqlExcecao;
 import eventapp.models.Evento;
 import eventapp.util.SceneManager;
 import eventapp.util.Seguranca;
@@ -107,7 +106,7 @@ public class Controle_MeusEventos implements Initializable {
         this.tvEvents.setItems(FXCollections.observableArrayList(lista));
     }
     
-    public void btnNotParticiparOnClick() throws sqlExcecao, SQLException, ClassNotFoundException, Exception{
+    public void btnNotParticiparOnClick() throws SQLException, ClassNotFoundException, Exception{
         Evento selected = (Evento) tvEvents.getSelectionModel().getSelectedItem();
         try {
             if(selected != null){

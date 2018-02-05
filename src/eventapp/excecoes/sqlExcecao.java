@@ -11,7 +11,8 @@ public class sqlExcecao extends Exception {
         this.msg = msg;
     }
     
-    public String getMsg(){
+    @Override
+    public String getMessage(){
         return this.msg;
     }
 }
